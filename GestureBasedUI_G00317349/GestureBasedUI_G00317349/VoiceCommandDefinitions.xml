@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+  <CommandSet xml:lang="en-us" Name="SpeechDemoCommandSet_en-us">
+    <CommandPrefix>Test</CommandPrefix>
+    <Example>Launch</Example>
+    
+
+    <Command Name="addRectangle">
+      <Example> add a rectangle  </Example>
+      <ListenFor> add [a] rectangle </ListenFor>
+      <ListenFor> add a {color} rectangle </ListenFor>
+      <Feedback> Adding a rectangle </Feedback>
+      <Navigate/>
+    </Command>
+    
+    
+  <PhraseList Label="color">
+      <Item>Red</Item>
+      <Item>Blue</Item>
+      <Item>Yellow</Item>
+      <Item>Green</Item>
+    </PhraseList>
+
+  
+  </CommandSet>
+
+
+</VoiceCommands>

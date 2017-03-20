@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -37,7 +38,7 @@ namespace GestureBasedUI_G00317349
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -46,6 +47,11 @@ namespace GestureBasedUI_G00317349
             }
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
+
+            //Install VCD commands +++++++++++++++
+            var storageFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///VoiceCommandDefinitions.xml"));
+            await Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(storageFile);
+
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
@@ -101,6 +107,71 @@ namespace GestureBasedUI_G00317349
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+
+        protected override void OnActivated(IActivatedEventArgs e)
+        {
+            base.OnActivated(e);
+            // Was the app activated by a voice command?
+            if (e.Kind != Windows.ApplicationModel.Activation.ActivationKind.VoiceCommand)
+            {
+                return;
+            }
+
+            Frame rootFrame = Window.Current.Content as Frame;
+
+
+            //Testing VCD file. Code adapted from: https://github.com/Windows-Readiness/AbsoluteBeginnersWin10/tree/master/UWP-079/UWP-079/CortanaExample
+            var commandArgs = e as Windows.ApplicationModel.Activation.VoiceCommandActivatedEventArgs;
+
+            var speechRecognitionResult = commandArgs.Result;
+            string voiceCommandName = speechRecognitionResult.RulePath[0];
+            string textSpoken = speechRecognitionResult.Text;
+
+            string spokenColor = "";
+            try
+            {
+                spokenColor = speechRecognitionResult.SemanticInterpretation.Properties["color"][0];
+            }
+            catch
+            {
+                //
+            }
+
+            Windows.UI.Color color;
+
+            switch (spokenColor)
+            {
+                case "Red":
+                    color = Colors.Red;
+                    break;
+                case "Blue":
+                    color = Colors.Blue;
+                    break;
+                case "Yellow":
+                    color = Colors.Yellow;
+                    break;
+                case "Green":
+                    color = Colors.Green;
+                    break;
+                default:
+                    color = Colors.Purple;
+                    break;
+            }
+
+            MainPage page = rootFrame.Content as MainPage;
+            if (page == null)
+            {
+                return;
+            }
+
+           if (voiceCommandName == "addRectangle")
+           {
+                page.CreateRectangle(color);
+           }
+
+                
         }
     }
 }
