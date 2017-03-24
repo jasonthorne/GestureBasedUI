@@ -11,8 +11,8 @@
       <ListenFor> add [a] rectangle </ListenFor>
       <ListenFor> add a {color} rectangle </ListenFor>
       <Feedback> Adding a rectangle </Feedback>
-      <VoiceCommandService Target="AdventureWorksVoiceCommandService"/>
-      <!--<Navigate/>-->
+      <!--<VoiceCommandService Target="AdventureWorksVoiceCommandService"/>-->
+      <Navigate/>
     </Command>
     
     
