@@ -8,8 +8,28 @@
     mc:Ignorable="d">
 
     <Grid Name="LayoutGrid">
-        <TextBlock Text="Say 'In Test, add a {color} rectangle'." 
+       <TextBlock Text="Say 'In Test, add a {color} rectangle'." 
                    Margin="25" 
-                   TextWrapping="Wrap" />
-        </Grid>
+                   TextWrapping="Wrap" /> 
+        
+    
+
+    <ScrollViewer Grid.Row="1" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock TextWrapping="Wrap"  HorizontalAlignment="Left"></TextBlock>
+                    <Button  x:Name="pickFileButton" Content="Pick video" Margin="0,0,0,10" Click="pickFileButton_Click"/>
+                </StackPanel>
+                <MediaPlayerElement x:Name="mediaPlayerElement"
+                                        
+                                        AutoPlay="False" Margin="5" HorizontalAlignment="Stretch" Height="300" AreTransportControlsEnabled="True"/>
+            </StackPanel>
+    </ScrollViewer>
+    </Grid>
+
+
+
+
+
+
 </Page>

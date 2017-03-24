@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -30,6 +31,7 @@ namespace GestureBasedUI_G00317349
         public App()
         {
             this.InitializeComponent();
+            Debug.WriteLine("Hello!");
             this.Suspending += OnSuspending;
         }
 
@@ -112,16 +114,76 @@ namespace GestureBasedUI_G00317349
 
         protected override void OnActivated(IActivatedEventArgs e)
         {
+
+            //Frame rootFrame = Window.Current.Content as Frame;
+
+
             base.OnActivated(e);
             // Was the app activated by a voice command?
-            if (e.Kind != Windows.ApplicationModel.Activation.ActivationKind.VoiceCommand)
-            {
-                return;
-            }
+            //////////if (e.Kind != Windows.ApplicationModel.Activation.ActivationKind.VoiceCommand)
+           ///// {
+                //return;
 
+
+               
+                /*
+                //Testing VCD file. Code adapted from: https://github.com/Windows-Readiness/AbsoluteBeginnersWin10/tree/master/UWP-079/UWP-079/CortanaExample
+                var commandArgs = e as Windows.ApplicationModel.Activation.VoiceCommandActivatedEventArgs;
+
+                var speechRecognitionResult = commandArgs.Result;
+                string voiceCommandName = speechRecognitionResult.RulePath[0];
+                string textSpoken = speechRecognitionResult.Text;
+
+                string spokenColor = "";
+                try
+                {
+                    spokenColor = speechRecognitionResult.SemanticInterpretation.Properties["color"][0];
+                }
+                catch
+                {
+                    //
+                }
+
+                Windows.UI.Color color;
+
+                switch (spokenColor)
+                {
+                    case "Red":
+                        color = Colors.Red;
+                        break;
+                    case "Blue":
+                        color = Colors.Blue;
+                        break;
+                    case "Yellow":
+                        color = Colors.Yellow;
+                        break;
+                    case "Green":
+                        color = Colors.Green;
+                        break;
+                    default:
+                        color = Colors.Purple;
+                        break;
+                }
+
+                MainPage page = rootFrame.Content as MainPage;
+                if (page == null)
+                {
+                    return;
+                }
+
+
+                if (voiceCommandName == "addRectangle")
+                {
+                    page.CreateRectangle(color);
+                }
+                */
+               
+            ////////}
+
+            
             Frame rootFrame = Window.Current.Content as Frame;
 
-
+            
             //Testing VCD file. Code adapted from: https://github.com/Windows-Readiness/AbsoluteBeginnersWin10/tree/master/UWP-079/UWP-079/CortanaExample
             var commandArgs = e as Windows.ApplicationModel.Activation.VoiceCommandActivatedEventArgs;
 
@@ -171,7 +233,8 @@ namespace GestureBasedUI_G00317349
                 page.CreateRectangle(color);
            }
 
-                
+   
+
         }
     }
 }

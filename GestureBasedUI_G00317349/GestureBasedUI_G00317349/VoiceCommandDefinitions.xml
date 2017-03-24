@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
   <CommandSet xml:lang="en-us" Name="SpeechDemoCommandSet_en-us">
-    <CommandPrefix>Test</CommandPrefix>
+    <CommandPrefix>Test</CommandPrefix> 
+    <!--<AppName>Test</AppName>   <Navigate/>-->
     <Example>Launch</Example>
     
 
@@ -10,7 +11,8 @@
       <ListenFor> add [a] rectangle </ListenFor>
       <ListenFor> add a {color} rectangle </ListenFor>
       <Feedback> Adding a rectangle </Feedback>
-      <Navigate/>
+      <VoiceCommandService Target="AdventureWorksVoiceCommandService"/>
+      <!--<Navigate/>-->
     </Command>
     
     
@@ -26,3 +28,7 @@
 
 
 </VoiceCommands>
+
+<!-- 
+https://docs.microsoft.com/en-us/cortana/voicecommands/launch-a-background-app-with-voice-commands-in-cortana 
+-->
