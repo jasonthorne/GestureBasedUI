@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestureBasedUI_G00317349", "GestureBasedUI_G00317349\GestureBasedUI_G00317349.csproj", "{B27CF59A-5D40-4DD9-97CD-83D67B1A5C1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CortanaRuntimeComponent", "CortanaRuntimeComponent\CortanaRuntimeComponent.csproj", "{484BDD30-E333-40A2-96A3-B6AFBA945061}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceCommandService", "VoiceCommandservice\VoiceCommandService.csproj", "{7905E47D-6028-4B28-8B6D-82E466CB4DDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,22 +39,22 @@ Global
 		{B27CF59A-5D40-4DD9-97CD-83D67B1A5C1F}.Release|x86.ActiveCfg = Release|x86
 		{B27CF59A-5D40-4DD9-97CD-83D67B1A5C1F}.Release|x86.Build.0 = Release|x86
 		{B27CF59A-5D40-4DD9-97CD-83D67B1A5C1F}.Release|x86.Deploy.0 = Release|x86
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Debug|ARM.ActiveCfg = Debug|ARM
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Debug|ARM.Build.0 = Debug|ARM
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Debug|x64.ActiveCfg = Debug|x64
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Debug|x64.Build.0 = Debug|x64
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Debug|x86.ActiveCfg = Debug|x86
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Debug|x86.Build.0 = Debug|x86
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Release|Any CPU.Build.0 = Release|Any CPU
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Release|ARM.ActiveCfg = Release|ARM
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Release|ARM.Build.0 = Release|ARM
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Release|x64.ActiveCfg = Release|x64
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Release|x64.Build.0 = Release|x64
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Release|x86.ActiveCfg = Release|x86
-		{484BDD30-E333-40A2-96A3-B6AFBA945061}.Release|x86.Build.0 = Release|x86
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Debug|ARM.ActiveCfg = Debug|ARM
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Debug|ARM.Build.0 = Debug|ARM
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Debug|x64.ActiveCfg = Debug|x64
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Debug|x64.Build.0 = Debug|x64
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Debug|x86.ActiveCfg = Debug|x86
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Debug|x86.Build.0 = Debug|x86
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Release|ARM.ActiveCfg = Release|ARM
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Release|ARM.Build.0 = Release|ARM
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Release|x64.ActiveCfg = Release|x64
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Release|x64.Build.0 = Release|x64
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Release|x86.ActiveCfg = Release|x86
+		{7905E47D-6028-4B28-8B6D-82E466CB4DDA}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

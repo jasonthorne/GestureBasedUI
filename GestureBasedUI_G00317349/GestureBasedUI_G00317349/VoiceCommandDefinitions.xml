@@ -6,28 +6,35 @@
     <Example>Launch</Example>
     
 
-    <Command Name="addRectangle">
+    <!--<Command Name="addRectangle">
       <Example> add a rectangle  </Example>
       <ListenFor> add [a] rectangle </ListenFor>
       <ListenFor> add a {color} rectangle </ListenFor>
       <Feedback> Adding a rectangle </Feedback>
-      <!--<VoiceCommandService Target="AdventureWorksVoiceCommandService"/>-->
       <Navigate/>
+    </Command>-->
+
+    <Command Name="addRectangleFromBackground">
+      <Example> add a rectangle </Example>
+      <ListenFor> add [a] rectangle </ListenFor>
+      <Feedback> Adding a rectangle</Feedback>
+      <VoiceCommandService Target="VoiceCommandService"/>
     </Command>
-    
-    
-  <PhraseList Label="color">
+
+
+    <!--<PhraseList Label="color">
       <Item>Red</Item>
       <Item>Blue</Item>
       <Item>Yellow</Item>
       <Item>Green</Item>
-    </PhraseList>
+    </PhraseList>-->
 
-  
+
   </CommandSet>
 
 
 </VoiceCommands>
+
 
 <!-- 
 https://docs.microsoft.com/en-us/cortana/voicecommands/launch-a-background-app-with-voice-commands-in-cortana 
