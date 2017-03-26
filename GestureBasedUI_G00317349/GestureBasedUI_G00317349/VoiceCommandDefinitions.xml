@@ -5,14 +5,12 @@
     <!--<AppName>Test</AppName>   <Navigate/>-->
     <Example>Launch</Example>
     
-
-    <!--<Command Name="addRectangle">
-      <Example> add a rectangle  </Example>
-      <ListenFor> add [a] rectangle </ListenFor>
-      <ListenFor> add a {color} rectangle </ListenFor>
-      <Feedback> Adding a rectangle </Feedback>
+    <Command Name="addRectangle">
+      <Example> add a test  </Example>
+      <ListenFor> add [a] test </ListenFor>
+      <Feedback> Adding a test </Feedback>
       <Navigate/>
-    </Command>-->
+    </Command>
 
     <Command Name="addRectangleFromBackground">
       <Example> add a rectangle </Example>
@@ -22,13 +20,20 @@
     </Command>
 
 
-    <!--<PhraseList Label="color">
+   <Command Name="pauseVideo">
+      <Example> pause a video  </Example>
+      <ListenFor> pause [the] video </ListenFor>
+      <Feedback> Pausing the video </Feedback>
+    <Navigate/>
+    </Command>
+
+
+   <!-- <PhraseList Label="color">
       <Item>Red</Item>
       <Item>Blue</Item>
       <Item>Yellow</Item>
       <Item>Green</Item>
     </PhraseList>-->
-
 
   </CommandSet>
 

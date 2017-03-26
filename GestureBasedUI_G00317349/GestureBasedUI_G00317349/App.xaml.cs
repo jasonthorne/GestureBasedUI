@@ -116,6 +116,67 @@ namespace GestureBasedUI_G00317349
         }
 
 
+
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            Debug.WriteLine("-------------- onActivated called -------");
+            base.OnActivated(args);
+
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            // Do not repeat app initialization when the Window already has content,
+            // just ensure that the window is active
+            if (rootFrame == null)
+            {
+                // Create a Frame to act as the navigation context and navigate to the first page
+                rootFrame = new Frame();
+                //App.NavigationService = new NavigationService(rootFrame);
+
+                rootFrame.NavigationFailed += OnNavigationFailed;
+
+                // Place the frame in the current Window
+                Window.Current.Content = rootFrame;
+            }
+            // Ensure the current window is active
+            if (rootFrame.Content == null)
+            {
+                // Launching normally.
+                rootFrame.Navigate(typeof(MainPage), "");
+            }
+            Window.Current.Activate();
+
+            MainPage page = rootFrame.Content as MainPage;
+
+            // Was the app activated by a voice command?
+            if (args.Kind == ActivationKind.VoiceCommand)
+            {
+                Debug.WriteLine("-------------- Activated via a voice command -------");
+                var commandArgs = args as VoiceCommandActivatedEventArgs;
+                Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
+
+                // Get the name of the voice command and the text spoken. 
+                // See VoiceCommands.xml for supported voice commands.
+                string voiceCommandName = speechRecognitionResult.RulePath[0];
+                string textSpoken = speechRecognitionResult.Text;
+                Debug.WriteLine("-------------- Voice command name -------" + voiceCommandName);
+
+                if (voiceCommandName == "addRectangle")
+                {
+                    page.CreateRectangle(Colors.Red);
+                }
+                else if (voiceCommandName == "pauseVideo")
+                {
+                    page.PauseVideo();
+                }
+            }
+            else if (args.Kind == ActivationKind.Protocol)
+            {
+                page.CreateRectangle(Colors.CornflowerBlue);
+            }
+
+        }
+
+        /*
         protected override void OnActivated(IActivatedEventArgs args)
         {
             Debug.WriteLine("+++++++++++++++ onActivated called +++++++++++++++");
@@ -148,7 +209,7 @@ namespace GestureBasedUI_G00317349
 
             // Was the app activated by a voice command?
             if (args.Kind == ActivationKind.VoiceCommand)
-            {
+             {
                 Debug.WriteLine("+++++++++++++++ Activated via a voice command +++++++++++++++");
                 var commandArgs = args as VoiceCommandActivatedEventArgs;
                 Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
@@ -163,13 +224,21 @@ namespace GestureBasedUI_G00317349
                 {
                     page.CreateRectangle(Colors.Red);
                 }
-                else if (voiceCommandName == "addRectangleFromBackground")
+
+
+                else if (args.Kind == ActivationKind.Protocol)
                 {
                     page.CreateRectangle(Colors.CornflowerBlue);
                 }
-            }
 
-            page.CreateRectangle(Colors.Black);
-        }
+                /*
+                else if (voiceCommandName == "addRectangleFromBackground")
+                {
+                  
+                }*/
+        // }
+
+        // page.CreateRectangle(Colors.Black);
+        //}
     }
 }

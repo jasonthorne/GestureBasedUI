@@ -18,6 +18,8 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Media.Core;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.Storage.Search;
+using System.Text;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,6 +30,8 @@ namespace GestureBasedUI_G00317349
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        int count = 0; /////////TEST COUNTER
+
 
         //private MainPage rootPage = MainPage.Current;
 
@@ -53,11 +57,17 @@ namespace GestureBasedUI_G00317349
             LayoutGrid.Children.Add(rect);
         }
 
-      /*
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+
+        public void PauseVideo()
         {
-            MediaPlayerHelper.CleanUpMediaPlayerSource(mediaPlayerElement.MediaPlayer);
-        }*/
+            this.mediaPlayerElement.MediaPlayer.Pause();
+        }
+
+        /*
+          protected override void OnNavigatedFrom(NavigationEventArgs e)
+          {
+              MediaPlayerHelper.CleanUpMediaPlayerSource(mediaPlayerElement.MediaPlayer);
+          }*/
 
 
         private  async void pickFileButton_Click(object sender, RoutedEventArgs e)
@@ -67,7 +77,36 @@ namespace GestureBasedUI_G00317349
             // Clear previous returned file name, if it exists, between iterations of this scenario
             rootPage.NotifyUser("", NotifyType.StatusMessage);
             */
-             
+
+            /*
+            //////
+            StorageFolder VideoFolder = KnownFolders.VideosLibrary;
+
+            StorageFolderQueryResult queryResult =
+                VideoFolder.CreateFolderQuery(CommonFolderQuery.GroupByMonth);
+
+            IReadOnlyList<StorageFolder> folderList =
+                await queryResult.GetFoldersAsync();
+
+            StringBuilder outputText = new StringBuilder();
+
+            foreach (StorageFolder folder in folderList)
+            {
+                IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
+
+                // Print the month and number of files in this group.
+                outputText.AppendLine(folder.Name + " (" + fileList.Count + ")");
+
+                foreach (StorageFile x in fileList)
+                {
+                    // Print the name of the file.
+                    outputText.AppendLine("   " + x.Name);
+                }
+            }
+
+            /////*/
+
+            /*
             // Create and open the file picker
             FileOpenPicker openPicker = new FileOpenPicker();
             openPicker.ViewMode = PickerViewMode.Thumbnail;
@@ -87,9 +126,40 @@ namespace GestureBasedUI_G00317349
             {
                 //rootPage.NotifyUser("Operation cancelled.", NotifyType.ErrorMessage);
             }
+            */
 
 
+            //mediaPlayerElement.IsTabStop();
+            //mediaPlayerElement.Source = null;
 
+            count++;
+
+            StorageFolder picturesFolder = KnownFolders.VideosLibrary;
+
+            StorageFolderQueryResult queryResult = picturesFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
+
+            IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
+
+            StringBuilder outputText = new StringBuilder();
+
+            foreach (StorageFolder folder in folderList)
+            {
+                IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
+
+                // Print the month and number of files in this group.
+                outputText.AppendLine(folder.Name + " (" + fileList.Count + ")");
+
+                foreach (StorageFile file in fileList)
+                {
+                    // Print the name of the file.
+                    outputText.AppendLine("   " + file.Name);
+                    if (file.Name.StartsWith("test" + count.ToString()))
+                    {
+                        this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
+                        this.mediaPlayerElement.MediaPlayer.Play();
+                    }
+                }
+            }
         }
     }   
 
