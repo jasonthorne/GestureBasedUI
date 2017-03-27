@@ -18,18 +18,30 @@
       <Feedback> Adding a rectangle</Feedback>
       <VoiceCommandService Target="VoiceCommandService"/>
     </Command>
+    
+    
+    <Command Name="playVideo">
+      <Example> play a video  </Example>
+      <!--<ListenFor> play {video} </ListenFor>-->
+       <ListenFor> play a video </ListenFor>
+      <Feedback> Playing the video </Feedback>
+       <Navigate/>
+      <!--<VoiceCommandService Target="VoiceCommandService"/>-->
+    </Command>
 
-
+    
    <Command Name="pauseVideo">
       <Example> pause a video  </Example>
       <ListenFor> pause [the] video </ListenFor>
       <Feedback> Pausing the video </Feedback>
     <Navigate/>
     </Command>
+    
+    
 
 
-   <!-- <PhraseList Label="color">
-      <Item>Red</Item>
+  <!-- <PhraseList Label="video">
+     <Item>Red</Item>
       <Item>Blue</Item>
       <Item>Yellow</Item>
       <Item>Green</Item>

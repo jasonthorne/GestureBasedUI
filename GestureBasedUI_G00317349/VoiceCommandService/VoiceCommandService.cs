@@ -43,12 +43,20 @@ namespace VoiceCommandService.VoiceCommands
                     switch (voiceCommand.CommandName)
                     {
                         case "addRectangleFromBackground":
-                            {
+                        {
                                 //var destination = voiceCommand.Properties["destination"][0];
                                 //SendCompletionMessageForDestination("");
                                 LaunchAppInForeground();
                                 break;
-                            }
+                        }
+                            /*
+                        case "playVideo":
+                        {
+                                LaunchAppInForeground();
+   
+                                break;
+                        }*/
+
 
                         // As a last resort, launch the app in the foreground.
                         default:

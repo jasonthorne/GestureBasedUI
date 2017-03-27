@@ -41,7 +41,7 @@ namespace GestureBasedUI_G00317349
         }
 
         //for testing VCD file
-        public void CreateRectangle(Color color)
+        public void createRectangle(Color color)
         {
             Random random = new Random();
             var left = random.Next(0, 300);
@@ -58,7 +58,7 @@ namespace GestureBasedUI_G00317349
         }
 
 
-        public void PauseVideo()
+        public void pauseVideo()
         {
             this.mediaPlayerElement.MediaPlayer.Pause();
         }
@@ -131,6 +131,8 @@ namespace GestureBasedUI_G00317349
 
             //mediaPlayerElement.IsTabStop();
             //mediaPlayerElement.Source = null;
+            
+
 
             count++;
 
@@ -147,12 +149,12 @@ namespace GestureBasedUI_G00317349
                 IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
 
                 // Print the month and number of files in this group.
-                outputText.AppendLine(folder.Name + " (" + fileList.Count + ")");
+               // outputText.AppendLine(folder.Name + " (" + fileList.Count + ")");
 
                 foreach (StorageFile file in fileList)
                 {
                     // Print the name of the file.
-                    outputText.AppendLine("   " + file.Name);
+                   /// outputText.AppendLine("   " + file.Name);
                     if (file.Name.StartsWith("test" + count.ToString()))
                     {
                         this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
@@ -161,6 +163,45 @@ namespace GestureBasedUI_G00317349
                 }
             }
         }
-    }   
+
+        
+
+        public async void cortanaPickVideo(string videoName)
+        {
+            createRectangle(Colors.Green);
+
+
+            StorageFolder picturesFolder = KnownFolders.VideosLibrary;
+
+            StorageFolderQueryResult queryResult = picturesFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
+
+            IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
+
+            StringBuilder outputText = new StringBuilder();
+
+            foreach (StorageFolder folder in folderList)
+            {
+                IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
+
+                // Print the month and number of files in this group.
+                // outputText.AppendLine(folder.Name + " (" + fileList.Count + ")");
+
+                foreach (StorageFile file in fileList)
+                {
+                    // Print the name of the file.
+                    /// outputText.AppendLine("   " + file.Name);
+                    if (file.Name.StartsWith(videoName))
+                    {
+                        this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
+                        this.mediaPlayerElement.MediaPlayer.Play();
+                    }
+                }
+            }
+        }
+
+    }
+
+
+       
 
 }

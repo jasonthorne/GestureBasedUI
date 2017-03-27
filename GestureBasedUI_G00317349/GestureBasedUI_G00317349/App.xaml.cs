@@ -147,10 +147,21 @@ namespace GestureBasedUI_G00317349
 
             MainPage page = rootFrame.Content as MainPage;
 
+            /*
+            var commandArgs = args as VoiceCommandActivatedEventArgs;
+            Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
+
+            // Get the name of the voice command and the text spoken. 
+            // See VoiceCommands.xml for supported voice commands.
+            string voiceCommandName = speechRecognitionResult.RulePath[0];
+            string textSpoken = speechRecognitionResult.Text;
+            */
+
             // Was the app activated by a voice command?
             if (args.Kind == ActivationKind.VoiceCommand)
             {
                 Debug.WriteLine("-------------- Activated via a voice command -------");
+              
                 var commandArgs = args as VoiceCommandActivatedEventArgs;
                 Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
 
@@ -158,20 +169,75 @@ namespace GestureBasedUI_G00317349
                 // See VoiceCommands.xml for supported voice commands.
                 string voiceCommandName = speechRecognitionResult.RulePath[0];
                 string textSpoken = speechRecognitionResult.Text;
+            
                 Debug.WriteLine("-------------- Voice command name -------" + voiceCommandName);
 
                 if (voiceCommandName == "addRectangle")
                 {
-                    page.CreateRectangle(Colors.Red);
+                    page.createRectangle(Colors.Red);
                 }
-                else if (voiceCommandName == "pauseVideo")
+                //else if (voiceCommandName == "pauseVideo")
+                // {
+                // page.PauseVideo();
+                //}
+
+                /*
+                else if (voiceCommandName == "addRectangleFromBackground")
                 {
-                    page.PauseVideo();
+                    page.CreateRectangle(Colors.Black);
+                }*/
+
+                else if (voiceCommandName == "playVideo")
+                {
+                    string spokenVideo = "";
+                    //spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
+                    //page.cortanaPickVideo(spokenVideo);
+                    page.cortanaPickVideo("apple");
                 }
+                
+
+
             }
             else if (args.Kind == ActivationKind.Protocol)
             {
-                page.CreateRectangle(Colors.CornflowerBlue);
+
+                /*
+                var commandArgs = args as VoiceCommandActivatedEventArgs;
+                Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
+
+                // Get the name of the voice command and the text spoken. 
+                // See VoiceCommands.xml for supported voice commands.
+                string voiceCommandName = speechRecognitionResult.RulePath[0];
+                string textSpoken = speechRecognitionResult.Text;
+              */
+
+                page.createRectangle(Colors.CornflowerBlue);
+
+
+                /*
+                //////////////+++++++++++++++++++++++++
+                var commandArgs = args as Windows.ApplicationModel.Activation.VoiceCommandActivatedEventArgs;
+               
+               var speechRecognitionResult = commandArgs.Result;
+               string voiceCommandName = speechRecognitionResult.RulePath[0];
+               string textSpoken = speechRecognitionResult.Text;
+                
+               string spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
+
+                page.cortanaPickVideo(spokenVideo);
+                */
+
+
+
+
+
+                //++++++++++++++++++++++++
+
+
+                //if (voiceCommandName == "addRectangleFromBackground")
+                // {
+                // page.CreateRectangle(Colors.Yellow);
+                //}
             }
 
         }
