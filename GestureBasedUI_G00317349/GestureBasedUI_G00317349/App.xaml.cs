@@ -5,10 +5,13 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.Search;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -117,7 +120,8 @@ namespace GestureBasedUI_G00317349
 
 
 
-        protected override void OnActivated(IActivatedEventArgs args)
+        //protected override void OnActivated(IActivatedEventArgs args) NOT ASYNC AS BELOW ONLY IS FOR TESTING CODE
+        protected override async void OnActivated(IActivatedEventArgs args)
         {
             Debug.WriteLine("-------------- onActivated called -------");
             base.OnActivated(args);
@@ -157,11 +161,13 @@ namespace GestureBasedUI_G00317349
             string textSpoken = speechRecognitionResult.Text;
             */
 
+
+            ////////+++++++++++++++++++++++++++++++++++++++++++++++++
             // Was the app activated by a voice command?
             if (args.Kind == ActivationKind.VoiceCommand)
             {
                 Debug.WriteLine("-------------- Activated via a voice command -------");
-              
+
                 var commandArgs = args as VoiceCommandActivatedEventArgs;
                 Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
 
@@ -169,8 +175,75 @@ namespace GestureBasedUI_G00317349
                 // See VoiceCommands.xml for supported voice commands.
                 string voiceCommandName = speechRecognitionResult.RulePath[0];
                 string textSpoken = speechRecognitionResult.Text;
-            
+
                 Debug.WriteLine("-------------- Voice command name -------" + voiceCommandName);
+
+
+
+
+
+
+                /////////////////////////////////////////////////////////////////////////////////////////////
+                StorageFolder chosenFolder = KnownFolders.VideosLibrary;
+
+                StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
+
+                IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
+
+                StringBuilder outputText = new StringBuilder();
+
+                List<string> testList = new List<string>();
+
+                foreach (StorageFolder folder in folderList)
+                {
+                    IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
+
+                    // Print the month and number of files in this group.
+                    // outputText.AppendLine(folder.Name + " (" + fileList.Count + ")");
+
+                    foreach (StorageFile file in fileList)
+                    {
+                        // Print the name of the file.
+                        /// outputText.AppendLine("   " + file.Name);
+                        testList.Add(Path.GetFileNameWithoutExtension(file.Name));
+
+
+                    }
+                }
+
+                foreach (string word in testList)
+                {
+                    Debug.WriteLine(word);
+                }
+
+
+
+                ///////++++++++++++++++++++++++++++++++++
+                Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition commandSetEnUs;//////////////.VoiceCommandDefinitions.VoiceCommandSet commandSetEnUs;
+
+                if (Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstalledCommandDefinitions.TryGetValue(  ///////.InstalledCommandSets.TryGetValue(
+                        "ProjectCommandSet_en-us", out commandSetEnUs))
+                {
+                    await commandSetEnUs.SetPhraseListAsync(
+                      "video", new string[] { "test", "apple", "New York", "Phoenix" });
+                }
+                /////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 if (voiceCommandName == "addRectangle")
                 {
@@ -181,77 +254,118 @@ namespace GestureBasedUI_G00317349
                 // page.PauseVideo();
                 //}
 
-                /*
-                else if (voiceCommandName == "addRectangleFromBackground")
-                {
-                    page.CreateRectangle(Colors.Black);
-                }*/
-               
+
+
                 else if (voiceCommandName == "playVideo")
                 {
-                    string spokenVideo = "";
-                    spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
-                    page.cortanaPickVideo(spokenVideo);
-                    /////page.cortanaPickVideo("apple");
+
+                   
+
+
+
+                    string spokenVideo = spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
+
+                     if (spokenVideo == "apple")
+                     {
+                         page.createRectangle(Colors.Plum);
+                     }
+
+                     page.cortanaPickVideo(spokenVideo);
+                     //page.cortanaPickVideo("apple");*/
                 }
-                
+
 
 
             }
-            else if (args.Kind == ActivationKind.Protocol)
+
+            ////////+++++++++++++++++++++++++++++++++++++++++++++++++
+            /*
+            //////////000000000000000000000000000000000000
+          
+            if (args.Kind != Windows.ApplicationModel.Activation.ActivationKind.VoiceCommand)
             {
-
-               /*
-                var commandArgs = args as Windows.ApplicationModel.Activation.VoiceCommandActivatedEventArgs;  //VoiceCommandActivatedEventArgs;
-                Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
-                //var speechRecognitionResult = commandArgs.Result;
-
-
-                // Get the name of the voice command and the text spoken. 
-                // See VoiceCommands.xml for supported voice commands.
+                var commandArgs = args as Windows.ApplicationModel.Activation.VoiceCommandActivatedEventArgs;
+                var speechRecognitionResult = commandArgs.Result;
                 string voiceCommandName = speechRecognitionResult.RulePath[0];
                 string textSpoken = speechRecognitionResult.Text;
-             */
-             /*
-                page.createRectangle(Colors.CornflowerBlue);
-                //////////////////
+                string spokenVideo = "";
+
+
                 if (voiceCommandName == "playVideo")
                 {
-
-
-                    string spokenVideo = "";
 
                     try
                     {
                         spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
+                        page.cortanaPickVideo(spokenVideo);
                     }
                     catch
                     {
-                        //
+                        ///
                     }
-                    
-                    page.cortanaPickVideo(spokenVideo);
+
                 }
-                ///////////////////
-                */
+            }
+
+           
+
+            //////////000000000000000000000000000000000000
+            */
+            /////////////////////////////
+            else if (args.Kind == ActivationKind.Protocol)
+            {
+
+                /*
+                 var commandArgs = args as Windows.ApplicationModel.Activation.VoiceCommandActivatedEventArgs;  //VoiceCommandActivatedEventArgs;
+                 Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
+                 //var speechRecognitionResult = commandArgs.Result;
+
+
+                 // Get the name of the voice command and the text spoken. 
+                 // See VoiceCommands.xml for supported voice commands.
+                 string voiceCommandName = speechRecognitionResult.RulePath[0];
+                 string textSpoken = speechRecognitionResult.Text;
+              */
+                /*
+                   page.createRectangle(Colors.CornflowerBlue);
+                   //////////////////
+                   if (voiceCommandName == "playVideo")
+                   {
+
+
+                       string spokenVideo = "";
+
+                       try
+                       {
+                           spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
+                       }
+                       catch
+                       {
+                           //
+                       }
+
+                       page.cortanaPickVideo(spokenVideo);
+                   }
+                   ///////////////////
+                   */
 
 
 
-                       
 
-               page.cortanaPickVideo("apple");
+
+                //  page.cortanaPickVideo("apple");
                 /*
                 //////////////+++++++++++++++++++++++++
                 var commandArgs = args as Windows.ApplicationModel.Activation.VoiceCommandActivatedEventArgs;
-               
+
                var speechRecognitionResult = commandArgs.Result;
                string voiceCommandName = speechRecognitionResult.RulePath[0];
                string textSpoken = speechRecognitionResult.Text;
-                
+
                string spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
 
                 page.cortanaPickVideo(spokenVideo);
-                */
+               */
 
 
 

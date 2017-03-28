@@ -20,6 +20,8 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Search;
 using System.Text;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -70,7 +72,7 @@ namespace GestureBasedUI_G00317349
           }*/
 
 
-        private  async void pickFileButton_Click(object sender, RoutedEventArgs e)
+        private  async void pickVideoButton_Click(object sender, RoutedEventArgs e)
         {
 
             /*
@@ -105,8 +107,8 @@ namespace GestureBasedUI_G00317349
             }
 
             /////*/
-
-            /*
+            
+            
             // Create and open the file picker
             FileOpenPicker openPicker = new FileOpenPicker();
             openPicker.ViewMode = PickerViewMode.Thumbnail;
@@ -126,46 +128,13 @@ namespace GestureBasedUI_G00317349
             {
                 //rootPage.NotifyUser("Operation cancelled.", NotifyType.ErrorMessage);
             }
-            */
-
-
+            
             //mediaPlayerElement.IsTabStop();
             //mediaPlayerElement.Source = null;
             
-
-
-            count++;
-
-            StorageFolder picturesFolder = KnownFolders.VideosLibrary;
-
-            StorageFolderQueryResult queryResult = picturesFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
-
-            IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
-
-            StringBuilder outputText = new StringBuilder();
-
-            foreach (StorageFolder folder in folderList)
-            {
-                IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
-
-                // Print the month and number of files in this group.
-               // outputText.AppendLine(folder.Name + " (" + fileList.Count + ")");
-
-                foreach (StorageFile file in fileList)
-                {
-                    // Print the name of the file.
-                   /// outputText.AppendLine("   " + file.Name);
-                    if (file.Name.StartsWith("test" + count.ToString()))
-                    {
-                        this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
-                        this.mediaPlayerElement.MediaPlayer.Play();
-                    }
-                }
-            }
         }
 
         
-
         public async void cortanaPickVideo(string videoName)
         {
             createRectangle(Colors.Green);
@@ -202,6 +171,90 @@ namespace GestureBasedUI_G00317349
             }
         }
 
+        private async void button_Click(object sender, RoutedEventArgs e)
+        {
+            createRectangle(Colors.Green);
+
+
+            StorageFolder chosenFolder = KnownFolders.VideosLibrary;
+
+            StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
+
+            IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
+
+            StringBuilder outputText = new StringBuilder();
+
+            List<string> testList = new List<string>();
+
+            foreach (StorageFolder folder in folderList)
+            {
+                IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
+
+                // Print the month and number of files in this group.
+                // outputText.AppendLine(folder.Name + " (" + fileList.Count + ")");
+
+                foreach (StorageFile file in fileList)
+                {
+                    // Print the name of the file.
+                    /// outputText.AppendLine("   " + file.Name);
+                    testList.Add(Path.GetFileNameWithoutExtension(file.Name));
+
+
+                }
+            }
+
+            foreach (string word in testList)
+            {
+                Debug.WriteLine(word);
+            }
+
+        }
+
+
+
+
+        //////////////////////////////
+        /*
+        private async Task<List<Item>> test()
+        {
+            {
+            createRectangle(Colors.Green);
+
+
+            StorageFolder chosenFolder = KnownFolders.VideosLibrary;
+
+            StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
+
+            IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
+
+            StringBuilder outputText = new StringBuilder();
+
+            List<string> testList = new List<string>();
+
+            foreach (StorageFolder folder in folderList)
+            {
+                IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
+
+                // Print the month and number of files in this group.
+                // outputText.AppendLine(folder.Name + " (" + fileList.Count + ")");
+
+                foreach (StorageFile file in fileList)
+                {
+                    // Print the name of the file.
+                    /// outputText.AppendLine("   " + file.Name);
+                    testList.Add(Path.GetFileNameWithoutExtension(file.Name));
+
+
+                }
+            }
+
+            foreach (string word in testList)
+            {
+                Debug.WriteLine(word);
+            }
+
+                
+        }*/
     }
 
 

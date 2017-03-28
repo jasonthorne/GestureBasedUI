@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
-  <CommandSet xml:lang="en-us" Name="SpeechDemoCommandSet_en-us">
-    <CommandPrefix>Test</CommandPrefix> 
+  <CommandSet xml:lang="en-us" Name="ProjectCommandSet_en-us">
+    <CommandPrefix>Project</CommandPrefix> 
     <!--<AppName>Test</AppName>   <Navigate/>-->
     <Example>Launch</Example>
     
@@ -51,10 +51,7 @@
 
 
     <PhraseList Label="video">
-     <Item>apple</Item>
-      <Item>Blue</Item>
-      <Item>Yellow</Item>
-      <Item>Green</Item>
+      <Item>dog</Item>
     </PhraseList>
 
   </CommandSet>
