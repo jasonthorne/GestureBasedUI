@@ -190,8 +190,11 @@ namespace GestureBasedUI_G00317349
                 {
                     // Print the name of the file.
                     /// outputText.AppendLine("   " + file.Name);
-                    if (file.Name.StartsWith(videoName))
-                    {
+                   if (file.Name.StartsWith(videoName))
+                   // if (file.Name.StartsWith("apple.mp4"))
+                        {
+                        //this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
+                        //this.mediaPlayerElement.MediaPlayer.Play();
                         this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
                         this.mediaPlayerElement.MediaPlayer.Play();
                     }

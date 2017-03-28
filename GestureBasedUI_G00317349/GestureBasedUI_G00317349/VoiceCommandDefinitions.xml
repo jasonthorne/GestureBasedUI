@@ -20,13 +20,23 @@
     </Command>
     
     
-    <Command Name="playVideo">
+    <!--<Command Name="playVideo">
       <Example> play a video  </Example>
-      <!--<ListenFor> play {video} </ListenFor>-->
-       <ListenFor> play a video </ListenFor>
+     <ListenFor> play an {video} </ListenFor>
+       //<ListenFor> play a video </ListenFor>
       <Feedback> Playing the video </Feedback>
        <Navigate/>
-      <!--<VoiceCommandService Target="VoiceCommandService"/>-->
+      <VoiceCommandService Target="VoiceCommandService"/>
+    </Command>-->
+    
+    
+     <Command Name="playVideo">
+      <Example> play a video  </Example>
+   <ListenFor> i want {video} </ListenFor>
+      <!--<ListenFor> play a video </ListenFor>-->
+      <Feedback> Playing the video </Feedback>
+       <Navigate/>
+    <!-- <VoiceCommandService Target="VoiceCommandService"/> -->
     </Command>
 
     
@@ -40,12 +50,12 @@
     
 
 
-  <!-- <PhraseList Label="video">
-     <Item>Red</Item>
+    <PhraseList Label="video">
+     <Item>apple</Item>
       <Item>Blue</Item>
       <Item>Yellow</Item>
       <Item>Green</Item>
-    </PhraseList>-->
+    </PhraseList>
 
   </CommandSet>
 
