@@ -31,78 +31,78 @@
     
     
      <Command Name="playVideo">
-      <Example>play a video </Example>
-      <ListenFor> i want {video} </ListenFor>
+      <Example>play a video</Example>
+      <ListenFor> i want {video}</ListenFor>
       <!--<ListenFor> play a video </ListenFor>-->
       <Feedback>Playing the video</Feedback>
-       <Navigate/>
+      <Navigate/>
     <!-- <VoiceCommandService Target="VoiceCommandService"/> -->
     </Command>
 
     <Command Name="pausePlayer">
-      <Example> Pause player</Example>
+      <Example>Pause player</Example>
       <ListenFor>pause [the] [video] [music]</ListenFor>
       <Feedback>Pausing</Feedback>
       <Navigate/>
     </Command>
     
-      <Command Name="resumePlayer">
-      <Example> Resume content</Example>
+    <Command Name="resumePlayer">
+      <Example>Resume content</Example>
       <ListenFor>resume [the] [video] [music]</ListenFor>
       <Feedback>Resuming</Feedback>
       <Navigate/>
     </Command>
     
     <Command Name="fastForwardPlayer">
-      <Example> Fast forward content</Example>
-      <ListenFor> fast forward [the] [video] </ListenFor>
-      <ListenFor> fast forward [the] [music] </ListenFor>
+      <Example>Fast forward content</Example>
+      <ListenFor>fast forward [the] [video]</ListenFor>
       <Feedback>Fast forwarding</Feedback>
-    <Navigate/>
-   </Command>  
+      <Navigate/>
+    </Command>  
     
-   <Command Name="rewindPlayer">
-      <Example> Rewind content</Example>
-      <ListenFor> rewind [the] video </ListenFor>
+    <Command Name="rewindPlayer">
+      <Example>Rewind content</Example>
+      <ListenFor>rewind [the] [video] [music]</ListenFor>
       <Feedback>Rewinding</Feedback>
-    <Navigate/>
-   </Command> 
+      <Navigate/>
+    </Command> 
     
     <Command Name="increaseVolume">
       <Example>Increase volume</Example>
-      <ListenFor>increase [the] volume </ListenFor>
-      <ListenFor>turn up [the] volume </ListenFor>
+      <ListenFor>increase [the] volume</ListenFor>
+      <ListenFor>turn up [the] volume</ListenFor>
       <Feedback>Increasing volume</Feedback>
-    <Navigate/>
-   </Command>
+      <Navigate/>
+    </Command>
     
-   <Command Name="reduceVolume">
+    <Command Name="reduceVolume">
       <Example>Reduce volume</Example>
-      <ListenFor> fast forward [the] video </ListenFor>
+      <ListenFor>reduce [the] volume</ListenFor>
+      <ListenFor>turn down [the] volume</ListenFor>
       <Feedback>Reducing volume</Feedback>
-    <Navigate/>
-   </Command>   
+      <Navigate/>
+    </Command>   
     
     <Command Name="makeFullScreen">
       <Example>Close content</Example>
-      <ListenFor> fast forward [the] video </ListenFor>
+      <ListenFor>[make] full screen</ListenFor>
       <Feedback>Making full screen</Feedback>
-    <Navigate/>
-   </Command>
+      <Navigate/>
+    </Command>
     
     <Command Name="exitFullScreen">
-      <Example>Close content</Example>
-      <ListenFor> fast forward [the] video </ListenFor>
+      <Example>exit full screen</Example>
+      <ListenFor>exit full screen</ListenFor>
       <Feedback>Exiting full screen</Feedback>
-    <Navigate/>
-   </Command>
+      <Navigate/>
+    </Command>
 
-    <Command Name="closePlayer">
-      <Example>Close content</Example>
-      <ListenFor> fast forward [the] video </ListenFor>
-      <Feedback>Closing</Feedback>
-    <Navigate/>
-   </Command>   
+    <Command Name="stopPlayer">
+      <Example>stop content</Example>
+      <ListenFor>stop [the] [video] [music]</ListenFor>
+      <Feedback>Stopping</Feedback>
+      <Navigate/>
+    </Command>   
     
     
     <PhraseList Label="video" />

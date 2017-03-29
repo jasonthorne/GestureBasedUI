@@ -244,7 +244,7 @@ namespace GestureBasedUI_G00317349
                 {
                     case "playVideo":
                         string spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
-                        page.playSpokenVideo(spokenVideo);
+                        page.playVideo(spokenVideo);
                         break;
                     case "pausePlayer":
                         page.pausePlayer();
@@ -295,7 +295,7 @@ namespace GestureBasedUI_G00317349
                          page.createRectangle(Colors.Yellow);
                      }
 
-                     page.playSpokenVideo(spokenVideo);
+                     page.playVideo(spokenVideo);
                  
                 }
 

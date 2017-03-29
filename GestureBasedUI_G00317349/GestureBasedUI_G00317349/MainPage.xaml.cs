@@ -13,8 +13,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-
 using Windows.Media.Core;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -32,9 +30,7 @@ namespace GestureBasedUI_G00317349
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        int count = 0; /////////TEST COUNTER
-
-
+        
         //private MainPage rootPage = MainPage.Current;
 
         public MainPage()
@@ -70,6 +66,41 @@ namespace GestureBasedUI_G00317349
             this.mediaPlayerElement.MediaPlayer.Play();
         }
 
+        public void fastForwardPlayer()
+        {
+            
+        }
+
+        public void rewindPlayer()
+        {
+
+        }
+
+        public void increaseVolume()
+        {
+
+        }
+
+        public void  reduceVolume()
+        {
+
+        }
+
+        public void makeFullScreen()
+        {
+
+        }
+
+        public void exitFullScreen()
+        {
+
+        }
+
+        public void stopPlayer()
+        {
+
+        }
+
         /*
           protected override void OnNavigatedFrom(NavigationEventArgs e)
           {
@@ -77,7 +108,7 @@ namespace GestureBasedUI_G00317349
           }*/
 
 
-        private  async void pickVideoButton_Click(object sender, RoutedEventArgs e)
+        private  async void playVideoButton_Click(object sender, RoutedEventArgs e)
         {
 
             /*
@@ -121,9 +152,7 @@ namespace GestureBasedUI_G00317349
             openPicker.FileTypeFilter.Add(".mp4");
             openPicker.FileTypeFilter.Add(".mkv");
             openPicker.FileTypeFilter.Add(".avi");
-            openPicker.FileTypeFilter.Add(".mp3"); /////////////////////
-
-
+            openPicker.FileTypeFilter.Add(".mp3"); 
 
             StorageFile file = await openPicker.PickSingleFileAsync();
             if (file != null)
@@ -132,8 +161,6 @@ namespace GestureBasedUI_G00317349
                 this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
                 this.mediaPlayerElement.MediaPlayer.Play();
 
-
-               
             }
             else
             {
@@ -142,20 +169,13 @@ namespace GestureBasedUI_G00317349
 
             //mediaPlayerElement.IsTabStop();
             //mediaPlayerElement.Source = null;
-
-            
-
         }
 
         
-        public async void playSpokenVideo(string videoName)
+        public async void playVideo(string videoName)
         {
 
             mediaPlayerElement.Source = null;
-
-            this.mediaPlayerElement.MediaPlayer.Volume.Equals(70);
-
-
 
             StorageFolder videoFolder = KnownFolders.VideosLibrary;
 
@@ -169,25 +189,16 @@ namespace GestureBasedUI_G00317349
             {
                 IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
 
-                // Print the month and number of files in this group.
-                // outputText.AppendLine(folder.Name + " (" + fileList.Count + ")");
-
                 foreach (StorageFile file in fileList)
                 {
-                    // Print the name of the file.
-                    /// outputText.AppendLine("   " + file.Name);
                    if (file.Name.StartsWith(videoName))
-                   // if (file.Name.StartsWith("apple.mp4"))
-                        {
-                        //this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
-                        //this.mediaPlayerElement.MediaPlayer.Play();
+                    {
                         this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
                         this.mediaPlayerElement.MediaPlayer.Play();
                     }
                 }
             }
-
-            
+  
         }
 
         private async void pickMusicButton_Click(object sender, RoutedEventArgs e)

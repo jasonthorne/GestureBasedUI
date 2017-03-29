@@ -14,7 +14,7 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock TextWrapping="Wrap"  HorizontalAlignment="Left"></TextBlock>
-                    <Button  x:Name="pickVideoButton" Content="Pick video" Margin="0,0,0,10" Click="pickVideoButton_Click"/>
+                    <Button  x:Name="pickVideoButton" Content="Pick video" Margin="0,0,0,10" Click="playVideoButton_Click" />
                 </StackPanel>
                 <MediaPlayerElement x:Name="mediaPlayerElement"
                                         
