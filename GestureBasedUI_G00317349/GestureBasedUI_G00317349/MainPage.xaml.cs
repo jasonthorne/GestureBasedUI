@@ -137,9 +137,7 @@ namespace GestureBasedUI_G00317349
         
         public async void cortanaPickVideo(string videoName)
         {
-            createRectangle(Colors.Green);
-
-
+           
             StorageFolder picturesFolder = KnownFolders.VideosLibrary;
 
             StorageFolderQueryResult queryResult = picturesFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
@@ -173,9 +171,7 @@ namespace GestureBasedUI_G00317349
 
         private async void button_Click(object sender, RoutedEventArgs e)
         {
-            createRectangle(Colors.Green);
-
-
+            
             StorageFolder chosenFolder = KnownFolders.VideosLibrary;
 
             StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
