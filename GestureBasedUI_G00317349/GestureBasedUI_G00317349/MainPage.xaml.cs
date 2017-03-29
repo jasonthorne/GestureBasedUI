@@ -60,9 +60,14 @@ namespace GestureBasedUI_G00317349
         }
 
 
-        public void pauseVideo()
+        public void pausePlayer()
         {
             this.mediaPlayerElement.MediaPlayer.Pause();
+        }
+
+        public void resumePlayer()
+        {
+            this.mediaPlayerElement.MediaPlayer.Play();
         }
 
         /*
@@ -147,6 +152,10 @@ namespace GestureBasedUI_G00317349
         {
 
             mediaPlayerElement.Source = null;
+
+            this.mediaPlayerElement.MediaPlayer.Volume.Equals(70);
+
+
 
             StorageFolder videoFolder = KnownFolders.VideosLibrary;
 
@@ -259,55 +268,11 @@ namespace GestureBasedUI_G00317349
 
         }
 
+
+
+
+
     }
-
-
-
-
-    //////////////////////////////
-    /*
-    private async Task<List<Item>> test()
-    {
-        {
-        createRectangle(Colors.Green);
-
-
-        StorageFolder chosenFolder = KnownFolders.VideosLibrary;
-
-        StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
-
-        IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
-
-        StringBuilder outputText = new StringBuilder();
-
-        List<string> testList = new List<string>();
-
-        foreach (StorageFolder folder in folderList)
-        {
-            IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
-
-            // Print the month and number of files in this group.
-            // outputText.AppendLine(folder.Name + " (" + fileList.Count + ")");
-
-            foreach (StorageFile file in fileList)
-            {
-                // Print the name of the file.
-                /// outputText.AppendLine("   " + file.Name);
-                testList.Add(Path.GetFileNameWithoutExtension(file.Name));
-
-
-            }
-        }
-
-        foreach (string word in testList)
-        {
-            Debug.WriteLine(word);
-        }*/
-
-
-        //}
-    //}
-
 
        
 

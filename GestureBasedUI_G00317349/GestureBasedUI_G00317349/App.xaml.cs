@@ -246,26 +246,26 @@ namespace GestureBasedUI_G00317349
                         string spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
                         page.playSpokenVideo(spokenVideo);
                         break;
-                    case "pauseVideo":
-                        page.pauseVideo();
-                     /*   break;
-                    case "pauseVideo":
-                        Console.WriteLine("Case 2");
-                        break;
-                    case "pauseVideo":
-                        Console.WriteLine("Case 2");
-                        break;
-                    case 2:
-                        pauseVideo:
-                        Console.WriteLine("Case 2");
-                        break;
-                    case 2:
-                        pauseVideo:
-                        Console.WriteLine("Case 2");
-                        break;
-                    case 2:
-                        pauseVideo
-                        Console.WriteLine("Case 2");*/
+                    case "pausePlayer":
+                        page.pausePlayer();
+                     break;
+                    case "resumePlayer":
+                        page.resumePlayer();
+                        /*    break;
+                     case "pauseVideo":
+                         Console.WriteLine("Case 2");
+                         break;
+                     case 2:
+                         pauseVideo:
+                         Console.WriteLine("Case 2");
+                         break;
+                     case 2:
+                         pauseVideo:
+                         Console.WriteLine("Case 2");
+                         break;
+                     case 2:
+                         pauseVideo
+                         Console.WriteLine("Case 2");*/
                         break;
                     default:
                       
