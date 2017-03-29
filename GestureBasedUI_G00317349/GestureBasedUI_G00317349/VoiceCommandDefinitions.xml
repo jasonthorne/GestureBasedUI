@@ -31,28 +31,74 @@
     
     
      <Command Name="playVideo">
-      <Example> play a video  </Example>
-   <ListenFor> i want {video} </ListenFor>
+      <Example>play a video </Example>
+      <ListenFor> i want {video} </ListenFor>
       <!--<ListenFor> play a video </ListenFor>-->
       <Feedback> Playing the video </Feedback>
        <Navigate/>
     <!-- <VoiceCommandService Target="VoiceCommandService"/> -->
     </Command>
 
-    
-   <Command Name="pauseVideo">
-      <Example> pause a video  </Example>
+   <Command Name="pausePlayer">
+      <Example> Pause player</Example>
       <ListenFor> pause [the] video </ListenFor>
       <Feedback> Pausing the video </Feedback>
+      <Navigate/>
+   </Command>
+    
+    <Command Name="fastForwardPlayer">
+      <Example> Fast forward content</Example>
+      <ListenFor> fast forward [the] video </ListenFor>
+      <Feedback>Fast forwarding</Feedback>
     <Navigate/>
-    </Command>
+   </Command>  
+    
+   <Command Name="rewindPlayer">
+      <Example> Rewind content</Example>
+      <ListenFor> rewind [the] video </ListenFor>
+      <Feedback>Rewinding</Feedback>
+    <Navigate/>
+   </Command> 
+    
+    <Command Name="increaseVolume">
+      <Example>Increase volume</Example>
+      <ListenFor> fast forward [the] video </ListenFor>
+      <Feedback>Closing</Feedback>
+    <Navigate/>
+   </Command>
+    
+   <Command Name="reduceVolume">
+      <Example>Reduce volume</Example>
+      <ListenFor> fast forward [the] video </ListenFor>
+      <Feedback>Closing</Feedback>
+    <Navigate/>
+   </Command>   
+    
+    <Command Name="makeFullScreen">
+      <Example>Close content</Example>
+      <ListenFor> fast forward [the] video </ListenFor>
+      <Feedback>Closing</Feedback>
+    <Navigate/>
+   </Command>
+    
+    <Command Name="removeFullScreen">
+      <Example>Close content</Example>
+      <ListenFor> fast forward [the] video </ListenFor>
+      <Feedback>Closing</Feedback>
+    <Navigate/>
+   </Command>
+
+    <Command Name="closePlayer">
+      <Example>Close content</Example>
+      <ListenFor> fast forward [the] video </ListenFor>
+      <Feedback>Closing</Feedback>
+    <Navigate/>
+   </Command>   
     
     
-
-
-    <PhraseList Label="video">
-      <Item>dog</Item>
-    </PhraseList>
+    <PhraseList Label="video" />
+ 
+    <!--</PhraseList>-->
 
   </CommandSet>
 

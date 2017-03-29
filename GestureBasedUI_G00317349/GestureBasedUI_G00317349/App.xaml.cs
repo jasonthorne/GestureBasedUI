@@ -138,36 +138,36 @@ namespace GestureBasedUI_G00317349
                if (VoiceCommandDefinitionManager.InstalledCommandDefinitions.TryGetValue("ProjectCommandSet_en-us", out commandDefinitions))
                {
 
-                    StorageFolder chosenFolder = KnownFolders.VideosLibrary;
+                    StorageFolder videoFolder = KnownFolders.VideosLibrary;
 
-                    StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
+                    StorageFolderQueryResult queryResult = videoFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
 
                     IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
 
                     StringBuilder outputText = new StringBuilder();
 
-                    List<string> testList = new List<string>();
+                    List<string> videoNamesList = new List<string>();
 
                     foreach (StorageFolder folder in folderList)
                     {
                         IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
 
                         foreach (StorageFile file in fileList)
-                        {        
-                            testList.Add(Path.GetFileNameWithoutExtension(file.Name));
+                        {
+                            videoNamesList.Add(Path.GetFileNameWithoutExtension(file.Name));
 
                         }
                     }
 
                     ////////////////////////////////////
-                    foreach (string word in testList)
+                    foreach (string word in videoNamesList)
                     {
                         Debug.WriteLine(word);
                     }
                     ////////////////////////////////////
 
                     //await commandDefinitions.SetPhraseListAsync("video", destinations);
-                    await commandDefinitions.SetPhraseListAsync("video", testList);//new string[] { "dog", "apple" });
+                    await commandDefinitions.SetPhraseListAsync("video", videoNamesList);//new string[] { "dog", "apple" });
                 }
             }
             catch (Exception ex)
@@ -239,6 +239,40 @@ namespace GestureBasedUI_G00317349
 
                 Debug.WriteLine("-------------- Voice command name -------" + voiceCommandName);
 
+
+                switch (voiceCommandName)
+                {
+                    case "playVideo":
+                        string spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
+                        page.playSpokenVideo(spokenVideo);
+                        break;
+                    case "pauseVideo":
+                        page.pauseVideo();
+                     /*   break;
+                    case "pauseVideo":
+                        Console.WriteLine("Case 2");
+                        break;
+                    case "pauseVideo":
+                        Console.WriteLine("Case 2");
+                        break;
+                    case 2:
+                        pauseVideo:
+                        Console.WriteLine("Case 2");
+                        break;
+                    case 2:
+                        pauseVideo:
+                        Console.WriteLine("Case 2");
+                        break;
+                    case 2:
+                        pauseVideo
+                        Console.WriteLine("Case 2");*/
+                        break;
+                    default:
+                      
+                        break;
+                }
+
+
                 if (voiceCommandName == "addRectangle")
                 {
                     page.createRectangle(Colors.Red);
@@ -254,14 +288,14 @@ namespace GestureBasedUI_G00317349
                 {
 
                   
-                    string spokenVideo = spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
+                    string spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
 
                      if (spokenVideo == "apple")
                      {
                          page.createRectangle(Colors.Yellow);
                      }
 
-                     page.cortanaPickVideo(spokenVideo);
+                     page.playSpokenVideo(spokenVideo);
                  
                 }
 
