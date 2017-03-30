@@ -7,21 +7,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Name="LayoutGrid">
+    <!--<Grid Name="LayoutGrid">-->
+    <Grid x:Name="layoutGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
+        <MediaPlayerElement x:Name="mediaPlayerElement" AutoPlay="False"  AreTransportControlsEnabled="True" Grid.RowSpan="2"/>
+        <!--<Button x:Name="button" Content="pick music" Click="pickMusicButton_Click"  />-->
 
-        <ScrollViewer VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto" Margin="10,0,-10,0">
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock TextWrapping="Wrap"  HorizontalAlignment="Left"></TextBlock>
-                    <Button  x:Name="pickVideoButton" Content="Pick video" Margin="0,0,0,10" Click="playVideoButton_Click" />
-                </StackPanel>
-                <MediaPlayerElement x:Name="mediaPlayerElement"
-                                        
-                                        AutoPlay="False" Margin="5"  Height="300" AreTransportControlsEnabled="True"/>
-                <Button x:Name="button" Content="pick music" Click="pickMusicButton_Click"  />
+        <!--<ScrollViewer VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto" Margin="10,0,-10,0">-->
+        <!--<StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock TextWrapping="Wrap"  HorizontalAlignment="Left"></TextBlock>
+                <Button  x:Name="pickVideoButton" Content="Pick video" Margin="0,0,0,10" Click="playVideoButton_Click" />
             </StackPanel>
-        </ScrollViewer>
+            
+        </StackPanel>-->
+        <!--</ScrollViewer> -->
     </Grid>
 
 

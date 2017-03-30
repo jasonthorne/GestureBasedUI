@@ -52,7 +52,7 @@ namespace GestureBasedUI_G00317349
 
             rect.Fill = new SolidColorBrush(color);
 
-            LayoutGrid.Children.Add(rect);
+            layoutGrid.Children.Add(rect);
         }
 
 
