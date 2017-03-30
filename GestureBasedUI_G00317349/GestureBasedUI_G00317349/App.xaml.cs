@@ -91,10 +91,11 @@ namespace GestureBasedUI_G00317349
             // Ensure the current window is active
             Window.Current.Activate();
 
-            //Install VCD commands +++++++++++++++
+            //Install VCD commands
             var storageFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///VoiceCommandDefinitions.xml"));
             await Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(storageFile);
 
+            //Update phraselist to include users videos
             await UpdateVideoPhraseList();
 
 
@@ -166,13 +167,12 @@ namespace GestureBasedUI_G00317349
                     }
                     ////////////////////////////////////
 
-                    //await commandDefinitions.SetPhraseListAsync("video", destinations);
-                    await commandDefinitions.SetPhraseListAsync("video", videoNamesList);//new string[] { "dog", "apple" });
+                    await commandDefinitions.SetPhraseListAsync("video", videoNamesList);
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Updating Phrase list for VCDs: " + ex.ToString());
+                System.Diagnostics.Debug.WriteLine("Error updating Phrase list for VCDs: " + ex.ToString());
             }
         }
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -248,57 +248,42 @@ namespace GestureBasedUI_G00317349
                         break;
                     case "pausePlayer":
                         page.pausePlayer();
-                     break;
+                        break;
                     case "resumePlayer":
                         page.resumePlayer();
-                        /*    break;
-                     case "pauseVideo":
-                         Console.WriteLine("Case 2");
-                         break;
-                     case 2:
-                         pauseVideo:
-                         Console.WriteLine("Case 2");
-                         break;
-                     case 2:
-                         pauseVideo:
-                         Console.WriteLine("Case 2");
-                         break;
-                     case 2:
-                         pauseVideo
-                         Console.WriteLine("Case 2");*/
+                        break;
+                    case "fastForwardPlayer":
+                        page.fastForwardPlayer();
+                        break;
+                    case "rewindPlayer":
+                        page.rewindPlayer();
+                        break;
+                    case "increaseVolume":
+                        page.increaseVolume();
+                        break;
+                    case "reduceVolume":
+                        page.reduceVolume();
+                        break;
+                    case "makeFullScreen":
+                        page.makeFullScreen();
+                        break;
+                    case "exitFullScreen":
+                        page.exitFullScreen();
+                        break;
+                    case "stopPlayer":
+                        page.stopPlayer();
                         break;
                     default:
-                      
                         break;
                 }
 
 
+                ///////////////////////////////////////////////
                 if (voiceCommandName == "addRectangle")
                 {
                     page.createRectangle(Colors.Red);
                 }
-                //else if (voiceCommandName == "pauseVideo")
-                // {
-                // page.PauseVideo();
-                //}
-
-
-
-                else if (voiceCommandName == "playVideo")
-                {
-
-                  
-                    string spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
-
-                     if (spokenVideo == "apple")
-                     {
-                         page.createRectangle(Colors.Yellow);
-                     }
-
-                     page.playVideo(spokenVideo);
-                 
-                }
-
+               //////////////////////////////////////////////
             }
             else if (args.Kind == ActivationKind.Protocol)
             {

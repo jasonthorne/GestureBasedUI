@@ -50,7 +50,7 @@ namespace VoiceCommandService.VoiceCommands
                               //  break;
                       //  }
                           
-                        case "playVideo":
+                        case "test":
                         {
                                 LaunchAppInForeground();
                                 

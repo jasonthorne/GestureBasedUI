@@ -2,7 +2,6 @@
 <VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
   <CommandSet xml:lang="en-us" Name="ProjectCommandSet_en-us">
     <CommandPrefix>Project</CommandPrefix> 
-    <!--<AppName>Test</AppName>   <Navigate/>-->
     <Example>Launch</Example>
     
     <Command Name="addRectangle">
@@ -20,19 +19,18 @@
     </Command>
     
     
-    <!--<Command Name="playVideo">
+    <!--<Command Name="test">
       <Example> play a video  </Example>
-     <ListenFor> play an {video} </ListenFor>
-       //<ListenFor> play a video </ListenFor>
+     <ListenFor> play a {video} </ListenFor>
+      <ListenFor> play a video </ListenFor>
       <Feedback> Playing the video </Feedback>
-       <Navigate/>
       <VoiceCommandService Target="VoiceCommandService"/>
     </Command>-->
     
     
      <Command Name="playVideo">
       <Example>play a video</Example>
-      <ListenFor> i want {video}</ListenFor>
+      <ListenFor>play {video}</ListenFor>
       <!--<ListenFor> play a video </ListenFor>-->
       <Feedback>Playing the video</Feedback>
       <Navigate/>
@@ -55,7 +53,7 @@
     
     <Command Name="fastForwardPlayer">
       <Example>Fast forward content</Example>
-      <ListenFor>fast forward [the] [video]</ListenFor>
+      <ListenFor>fast forward [the] [video] [music]</ListenFor>
       <Feedback>Fast forwarding</Feedback>
       <Navigate/>
     </Command>  
@@ -104,9 +102,9 @@
       <Navigate/>
     </Command>   
     
-    
+   
     <PhraseList Label="video" />
- 
+   
     <!--</PhraseList>-->
 
   </CommandSet>
