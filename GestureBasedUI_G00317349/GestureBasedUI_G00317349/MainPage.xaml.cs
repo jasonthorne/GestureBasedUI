@@ -270,6 +270,8 @@ namespace GestureBasedUI_G00317349
             }
             else if (mediaType == "music")
             {
+                chosenFolder = KnownFolders.MusicLibrary; /////////////////////NOT WORKING!!!!
+
 
                 /*     
                  QueryOptions queryOption = new QueryOptions
@@ -306,7 +308,6 @@ namespace GestureBasedUI_G00317349
                 //create tempfileList for reading
                 IReadOnlyList<StorageFile> tempFileList = await folder.GetFilesAsync();
                
-
                 foreach (StorageFile file in tempFileList)
                 {
 
@@ -314,7 +315,6 @@ namespace GestureBasedUI_G00317349
                     mediaListBox.Items.Add(Path.GetFileNameWithoutExtension(file.Name));
                     //add to fileList for playing after selection
                     fileList.Add(file);
-
                 }
             }
 
@@ -322,11 +322,11 @@ namespace GestureBasedUI_G00317349
 
         }
 
-
         private void showMediaButton_Click(object sender, RoutedEventArgs e)
         {
             mySpiltView.IsPaneOpen = !mySpiltView.IsPaneOpen;
         }
+
 
         //list box event listener
         private void mediaListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

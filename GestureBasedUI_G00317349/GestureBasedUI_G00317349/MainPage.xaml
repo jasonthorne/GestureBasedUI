@@ -41,13 +41,14 @@
             
         </StackPanel>-->
         <!--</ScrollViewer> -->
+        <!--E714 E8D6 EC4F E116-->
 
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
-            <Button x:Name="pickVideoButton" Content="Pick video" Margin="10,0,0,0" Click="pickVideoButton_Click" MinWidth="50"/>
-            <Button x:Name="pickMusicButton" Content="pick music" Margin="10,0,0,0" Click="pickMusicButton_Click" MinWidth="50"/>
+            <Button x:Name="pickVideoButton" Content="Pick Video"  Margin="10,0,0,0" Click="pickVideoButton_Click" MinWidth="50"/>
+            <Button x:Name="pickMusicButton" Content="Pick Music" Margin="10,0,0,0" Click="pickMusicButton_Click" MinWidth="50"/>
         </StackPanel>
     </Grid>
-    
+
     
 
 </Page>
