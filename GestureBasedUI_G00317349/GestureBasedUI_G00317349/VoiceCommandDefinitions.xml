@@ -65,22 +65,22 @@
     
     <Command Name="makeFullScreen">
       <Example>make full screen</Example>
-      <ListenFor>[make] full screen</ListenFor>
+      <ListenFor>make full screen</ListenFor>
       <Feedback>Making full screen</Feedback>
       <Navigate/>
     </Command>
     
     <Command Name="exitFullScreen">
       <Example>exit full screen</Example>
-      <ListenFor>exit fullscreen</ListenFor>
-       <ListenFor>minimize fullscreen</ListenFor>
+      <ListenFor>exit full screen</ListenFor>
+      <ListenFor>minimize full screen</ListenFor>
       <Feedback>Exiting full screen</Feedback>
       <Navigate/>
     </Command>
 
     <Command Name="stopPlayer">
       <Example>stop content</Example>
-      <ListenFor>stop [the] [video] [music]</ListenFor>
+      <ListenFor>stop the [video] [music]</ListenFor>
       <Feedback>Stopping</Feedback>
       <Navigate/>
     </Command>   

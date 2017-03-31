@@ -1,4 +1,9 @@
-﻿using System;
+﻿
+//code adapted from the following docs: 
+//https://docs.microsoft.com/en-us/uwp/api/Windows.UI.Xaml.Controls.MediaElement#Windows_UI_Xaml_Controls_MediaElement_Volume
+//https://docs.microsoft.com/en-us/windows/uwp/audio-video-camera/play-audio-and-video-with-mediaplayer
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,7 +35,6 @@ namespace GestureBasedUI_G00317349
     /// </summary>
     public sealed partial class MainPage : Page
     {
-
         
         //holds video/music files
         List<StorageFile> fileList = new List<StorageFile>();
@@ -84,7 +88,7 @@ namespace GestureBasedUI_G00317349
 
         public void stopPlayer()
         {
-            mediaPlayerElement.MediaPlayer.Source = null;
+            this.mediaPlayerElement.MediaPlayer.Source = null;
         }
 
 
