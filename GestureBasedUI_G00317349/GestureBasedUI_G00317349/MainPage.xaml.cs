@@ -64,24 +64,22 @@ namespace GestureBasedUI_G00317349
 
         public void increaseVolume()
         {
-
+            this.mediaPlayerElement.MediaPlayer.Volume += 0.1;
         }
 
         public void reduceVolume()
         {
-
+            this.mediaPlayerElement.MediaPlayer.Volume -= 0.1;
         }
 
         public void makeFullScreen()
         {
-            //this.mediaPlayerElement.TransportControls.IsFullWindowEnabled = true;
-            //this.mediaPlayerElement.IsFullWindow = true;
-            //this.mediaPlayerElement.IsFullWindow
+            this.mediaPlayerElement.IsFullWindow = true;
         }
 
         public void exitFullScreen()
         {
-
+            this.mediaPlayerElement.IsFullWindow = false;
         }
 
         public void stopPlayer()

@@ -72,7 +72,8 @@
     
     <Command Name="exitFullScreen">
       <Example>exit full screen</Example>
-      <ListenFor>[exit full] [minimize]screen</ListenFor>
+      <ListenFor>exit fullscreen</ListenFor>
+       <ListenFor>minimize fullscreen</ListenFor>
       <Feedback>Exiting full screen</Feedback>
       <Navigate/>
     </Command>
