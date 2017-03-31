@@ -108,8 +108,10 @@ namespace GestureBasedUI_G00317349
           }*/
 
 
-        private  async void playVideoButton_Click(object sender, RoutedEventArgs e)
+        private void pickVideoButton_Click(object sender, RoutedEventArgs e)
         {
+
+            addToMediaListBox("videos");
 
             /*
             // Clear previous returned file name, if it exists, between iterations of this scenario
@@ -143,8 +145,8 @@ namespace GestureBasedUI_G00317349
             }
 
             /////*/
-            
-            
+
+            /*
             // Create and open the file picker
             FileOpenPicker openPicker = new FileOpenPicker();
             openPicker.ViewMode = PickerViewMode.Thumbnail;
@@ -152,7 +154,7 @@ namespace GestureBasedUI_G00317349
             openPicker.FileTypeFilter.Add(".mp4");
             openPicker.FileTypeFilter.Add(".mkv");
             openPicker.FileTypeFilter.Add(".avi");
-            openPicker.FileTypeFilter.Add(".mp3"); 
+            openPicker.FileTypeFilter.Add(".mp3"); ///////////////////////////////////REMOVE LATER!!! 
 
             StorageFile file = await openPicker.PickSingleFileAsync();
             if (file != null)
@@ -169,10 +171,12 @@ namespace GestureBasedUI_G00317349
 
             //mediaPlayerElement.IsTabStop();
             //mediaPlayerElement.Source = null;
+            */
+
         }
 
-        
-        public async void playVideo(string videoName)
+
+        public async void playVideo(string videoName) /////////////?????????????
         {
 
             mediaPlayerElement.Source = null;
@@ -201,41 +205,12 @@ namespace GestureBasedUI_G00317349
   
         }
 
-        private async void pickMusicButton_Click(object sender, RoutedEventArgs e)
+        private void pickMusicButton_Click(object sender, RoutedEventArgs e)
         {
+
+            addToMediaListBox("music");
+
             /*
-            StorageFolder chosenFolder = KnownFolders.VideosLibrary;
-
-            StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
-
-            IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
-
-            StringBuilder outputText = new StringBuilder();
-
-            List<string> testList = new List<string>();
-
-            foreach (StorageFolder folder in folderList)
-            {
-                IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
-
-                // Print the month and number of files in this group.
-                // outputText.AppendLine(folder.Name + " (" + fileList.Count + ")");
-
-                foreach (StorageFile file in fileList)
-                {
-                    // Print the name of the file.
-                    /// outputText.AppendLine("   " + file.Name);
-                    testList.Add(Path.GetFileNameWithoutExtension(file.Name));
-
-
-                }
-            }
-
-            foreach (string word in testList)
-            {
-                Debug.WriteLine(word);
-            }*/
-
             mediaPlayerElement.Source = null;
 
             // Create and open the file picker
@@ -259,9 +234,9 @@ namespace GestureBasedUI_G00317349
 
             //mediaPlayerElement.IsTabStop();
             //mediaPlayerElement.Source = null;
-           
+           */
 
-            /*
+           /*
             QueryOptions queryOption = new QueryOptions
             (CommonFileQuery.OrderByTitle, new string[] { ".mp3", ".mp4", ".wma" });
 
@@ -275,13 +250,85 @@ namespace GestureBasedUI_G00317349
             foreach (var file in files)
             {
                 Debug.WriteLine(file.Name);
-            }*/
+                mediaListBox.Items.Add(file.Name);
+            }
+            */
+        }
 
+        public async void addToMediaListBox(string mediaType)
+        {
+
+            StorageFolder chosenFolder = null;
+
+            if (mediaType == "videos")
+            {
+                chosenFolder = KnownFolders.VideosLibrary;
+            }
+            else if (mediaType == "music")
+            {
+
+           /*     
+            QueryOptions queryOption = new QueryOptions
+            (CommonFileQuery.OrderByTitle, new string[] { ".mp3", ".mp4", ".wma" });
+
+            queryOption.FolderDepth = FolderDepth.Deep;
+
+            Queue<IStorageFolder> folders = new Queue<IStorageFolder>();
+
+            var files = await KnownFolders.MusicLibrary.CreateFileQueryWithOptions
+              (queryOption).GetFilesAsync();
+
+            foreach (var file in files)
+            {
+                Debug.WriteLine(file.Name);
+                mediaListBox.Items.Add(file.Name);
+            }
+           
+
+                chosenFolder = KnownFolders.MusicLibrary;
+                //musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
+
+            }*/
+            
+           // StorageFolder chosenFolder = KnownFolders.VideosLibrary;
+
+            
+            StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
+
+            IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
+
+            StringBuilder outputText = new StringBuilder();
+
+            //List<string> testList = new List<string>();
+
+            foreach (StorageFolder folder in folderList)
+            {
+                IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
+
+                foreach (StorageFile file in fileList)
+                {
+                    // Print the name of the file.
+                    /// outputText.AppendLine("   " + file.Name);
+                    //testList.Add(Path.GetFileNameWithoutExtension(file.Name));
+                    mediaListBox.Items.Add(Path.GetFileNameWithoutExtension(file.Name));
+                }
+            }
+            
+            mySpiltView.IsPaneOpen = true;
+           
         }
 
 
+        private void showMediaButton_Click(object sender, RoutedEventArgs e)
+        {
+            mySpiltView.IsPaneOpen = !mySpiltView.IsPaneOpen;
+        }
 
+        //list box event listener
+        private void mediaListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
 
     }
 

@@ -96,7 +96,7 @@ namespace GestureBasedUI_G00317349
             await Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(storageFile);
 
             //Update phraselist to include users videos
-            await UpdateVideoPhraseList();
+            await updateVideoPhraseList();
 
 
         }
@@ -127,7 +127,7 @@ namespace GestureBasedUI_G00317349
 
 
        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        public async Task UpdateVideoPhraseList()  //SetPhraseListAsync
+        public async Task updateVideoPhraseList()  //SetPhraseListAsync
         {
             try
             {
@@ -155,8 +155,7 @@ namespace GestureBasedUI_G00317349
 
                         foreach (StorageFile file in fileList)
                         {
-                            videoNamesList.Add(Path.GetFileNameWithoutExtension(file.Name));
-
+                            videoNamesList.Add(Path.GetFileNameWithoutExtension(file.Name));    
                         }
                     }
 
