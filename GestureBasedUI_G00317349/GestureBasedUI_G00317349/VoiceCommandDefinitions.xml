@@ -14,7 +14,7 @@
     
     <Command Name="playMusic">
       <Example>play some music</Example>
-      <ListenFor>play {music}</ListenFor>
+      <ListenFor>play music {music}</ListenFor>
       <Feedback>Playing music</Feedback>
       <Navigate/>
     </Command>
