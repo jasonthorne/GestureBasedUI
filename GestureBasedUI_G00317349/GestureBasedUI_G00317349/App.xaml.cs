@@ -223,12 +223,12 @@ namespace GestureBasedUI_G00317349
                 {
                     case "playVideo":
                         string spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
-                        page.playMedia(spokenVideo);
+                        page.playMedia("video", spokenVideo);
                         //page.polulateListBox("video");
                         break;
                     case "playMusic":
                         string spokenMusic = speechRecognitionResult.SemanticInterpretation.Properties["music"][0];
-                        page.playMedia(spokenMusic);
+                        page.playMedia("music", spokenMusic);
                         //page.polulateListBox("music");
                         break;
                     case "pausePlayer":

@@ -99,14 +99,25 @@ namespace GestureBasedUI_G00317349
         }
 
 
-        public async void playMedia(string videoName) 
+        public async void playMedia(string mediaType, string videoName) 
         {
 
             mediaPlayerElement.Source = null;
 
-            StorageFolder videoFolder = KnownFolders.VideosLibrary;
+            StorageFolder chosenFolder = null;
 
-            StorageFolderQueryResult queryResult = videoFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
+            if (mediaType == "video")
+            {
+                chosenFolder = KnownFolders.VideosLibrary;
+            }
+            else if (mediaType == "music")
+            {
+                chosenFolder = KnownFolders.MusicLibrary;
+            }
+
+           // StorageFolder videoFolder = KnownFolders.VideosLibrary;
+
+            StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
 
             IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
 
