@@ -30,8 +30,12 @@ namespace GestureBasedUI_G00317349
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        
+
         //private MainPage rootPage = MainPage.Current;
+
+        //holds video/music files
+        List<StorageFile> fileList = new List<StorageFile>();
+       
 
         public MainPage()
         {
@@ -68,7 +72,7 @@ namespace GestureBasedUI_G00317349
 
         public void fastForwardPlayer()
         {
-            
+
         }
 
         public void rewindPlayer()
@@ -81,14 +85,14 @@ namespace GestureBasedUI_G00317349
 
         }
 
-        public void  reduceVolume()
+        public void reduceVolume()
         {
 
         }
 
         public void makeFullScreen()
         {
-
+            //this.mediaPlayerElement.MediaPlayer.f
         }
 
         public void exitFullScreen()
@@ -187,7 +191,7 @@ namespace GestureBasedUI_G00317349
 
             IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
 
-            StringBuilder outputText = new StringBuilder();
+            ///StringBuilder outputText = new StringBuilder();
 
             foreach (StorageFolder folder in folderList)
             {
@@ -195,14 +199,14 @@ namespace GestureBasedUI_G00317349
 
                 foreach (StorageFile file in fileList)
                 {
-                   if (file.Name.StartsWith(videoName))
+                    if (file.Name.StartsWith(videoName))
                     {
                         this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
                         this.mediaPlayerElement.MediaPlayer.Play();
                     }
                 }
             }
-  
+
         }
 
         private void pickMusicButton_Click(object sender, RoutedEventArgs e)
@@ -236,23 +240,23 @@ namespace GestureBasedUI_G00317349
             //mediaPlayerElement.Source = null;
            */
 
-           /*
-            QueryOptions queryOption = new QueryOptions
-            (CommonFileQuery.OrderByTitle, new string[] { ".mp3", ".mp4", ".wma" });
+            /*
+             QueryOptions queryOption = new QueryOptions
+             (CommonFileQuery.OrderByTitle, new string[] { ".mp3", ".mp4", ".wma" });
 
-            queryOption.FolderDepth = FolderDepth.Deep;
+             queryOption.FolderDepth = FolderDepth.Deep;
 
-            Queue<IStorageFolder> folders = new Queue<IStorageFolder>();
+             Queue<IStorageFolder> folders = new Queue<IStorageFolder>();
 
-            var files = await KnownFolders.MusicLibrary.CreateFileQueryWithOptions
-              (queryOption).GetFilesAsync();
+             var files = await KnownFolders.MusicLibrary.CreateFileQueryWithOptions
+               (queryOption).GetFilesAsync();
 
-            foreach (var file in files)
-            {
-                Debug.WriteLine(file.Name);
-                mediaListBox.Items.Add(file.Name);
-            }
-            */
+             foreach (var file in files)
+             {
+                 Debug.WriteLine(file.Name);
+                 mediaListBox.Items.Add(file.Name);
+             }
+             */
         }
 
         public async void addToMediaListBox(string mediaType)
@@ -267,55 +271,55 @@ namespace GestureBasedUI_G00317349
             else if (mediaType == "music")
             {
 
-           /*     
-            QueryOptions queryOption = new QueryOptions
-            (CommonFileQuery.OrderByTitle, new string[] { ".mp3", ".mp4", ".wma" });
+                /*     
+                 QueryOptions queryOption = new QueryOptions
+                 (CommonFileQuery.OrderByTitle, new string[] { ".mp3", ".mp4", ".wma" });
 
-            queryOption.FolderDepth = FolderDepth.Deep;
+                 queryOption.FolderDepth = FolderDepth.Deep;
 
-            Queue<IStorageFolder> folders = new Queue<IStorageFolder>();
+                 Queue<IStorageFolder> folders = new Queue<IStorageFolder>();
 
-            var files = await KnownFolders.MusicLibrary.CreateFileQueryWithOptions
-              (queryOption).GetFilesAsync();
+                 var files = await KnownFolders.MusicLibrary.CreateFileQueryWithOptions
+                   (queryOption).GetFilesAsync();
 
-            foreach (var file in files)
-            {
-                Debug.WriteLine(file.Name);
-                mediaListBox.Items.Add(file.Name);
+                 foreach (var file in files)
+                 {
+                     Debug.WriteLine(file.Name);
+                     mediaListBox.Items.Add(file.Name);
+                 }
+
+
+                     chosenFolder = KnownFolders.MusicLibrary;
+                     //musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);*/
+
             }
-           
 
-                chosenFolder = KnownFolders.MusicLibrary;
-                //musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
-
-            }*/
-            
-           // StorageFolder chosenFolder = KnownFolders.VideosLibrary;
-
-            
             StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
+            IReadOnlyList<StorageFolder> tempFolderList = await queryResult.GetFoldersAsync();
 
-            IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
+            //clear fileList before populating
+            fileList.Clear();
 
-            StringBuilder outputText = new StringBuilder();
-
-            //List<string> testList = new List<string>();
-
-            foreach (StorageFolder folder in folderList)
+            foreach (StorageFolder folder in tempFolderList)
             {
-                IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
 
-                foreach (StorageFile file in fileList)
+                //create tempfileList for reading
+                IReadOnlyList<StorageFile> tempFileList = await folder.GetFilesAsync();
+               
+
+                foreach (StorageFile file in tempFileList)
                 {
-                    // Print the name of the file.
-                    /// outputText.AppendLine("   " + file.Name);
-                    //testList.Add(Path.GetFileNameWithoutExtension(file.Name));
+
+                    //add to mediaListBox for displaying to user
                     mediaListBox.Items.Add(Path.GetFileNameWithoutExtension(file.Name));
+                    //add to fileList for playing after selection
+                    fileList.Add(file);
+
                 }
             }
-            
+
             mySpiltView.IsPaneOpen = true;
-           
+
         }
 
 
@@ -327,11 +331,21 @@ namespace GestureBasedUI_G00317349
         //list box event listener
         private void mediaListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
+            foreach (StorageFile file in fileList)
+            {
+                Debug.WriteLine(file.Name); 
+
+                if ((string)mediaListBox.SelectedItem == Path.GetFileNameWithoutExtension(file.Name))
+                {
+                    mySpiltView.IsPaneOpen = false;
+                    this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
+                    this.mediaPlayerElement.MediaPlayer.Play();
+                }
+            }
 
         }
 
     }
-
-       
 
 }

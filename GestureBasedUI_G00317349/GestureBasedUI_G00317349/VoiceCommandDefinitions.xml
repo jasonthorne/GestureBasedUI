@@ -30,7 +30,7 @@
     
      <Command Name="playVideo">
       <Example>play a video</Example>
-      <ListenFor>play {video}</ListenFor>
+      <ListenFor>play video {video}</ListenFor>
       <!--<ListenFor> play a video </ListenFor>-->
       <Feedback>Playing the video</Feedback>
       <Navigate/>

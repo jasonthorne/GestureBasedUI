@@ -145,7 +145,7 @@ namespace GestureBasedUI_G00317349
 
                     IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
 
-                    StringBuilder outputText = new StringBuilder();
+                    ////StringBuilder outputText = new StringBuilder();
 
                     List<string> videoNamesList = new List<string>();
 
