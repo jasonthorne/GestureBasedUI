@@ -35,14 +35,14 @@
     
     <Command Name="fastForwardPlayer">
       <Example>Fast forward content</Example>
-      <ListenFor>fast forward [the] [video] [music]</ListenFor>
+      <ListenFor>fast forward the [video] [music]</ListenFor>
       <Feedback>Fast forwarding</Feedback>
       <Navigate/>
     </Command>  
     
     <Command Name="rewindPlayer">
       <Example>Rewind content</Example>
-      <ListenFor>rewind [the] [video] [music]</ListenFor>
+      <ListenFor>rewind the [video] [music]</ListenFor>
       <Feedback>Rewinding</Feedback>
       <Navigate/>
     </Command> 
@@ -72,7 +72,7 @@
     
     <Command Name="exitFullScreen">
       <Example>exit full screen</Example>
-      <ListenFor>exit full screen</ListenFor>
+      <ListenFor>[exit full] [minimize]screen</ListenFor>
       <Feedback>Exiting full screen</Feedback>
       <Navigate/>
     </Command>

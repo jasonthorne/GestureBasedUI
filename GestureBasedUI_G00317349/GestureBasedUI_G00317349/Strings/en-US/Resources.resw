@@ -117,43 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CancelledTripToDestination" xml:space="preserve">
-    <value>Cancelled the trip to {0}</value>
-  </data>
-  <data name="CancellingTripToDestination" xml:space="preserve">
-    <value>Cancelling the trip to {0}</value>
-  </data>
-  <data name="CancelTripToDestination" xml:space="preserve">
-    <value>Cancel this trip to {0}?</value>
-  </data>
-  <data name="ConfirmCancelTripToDestination" xml:space="preserve">
-    <value>Did you want to cancel this trip to {0}?</value>
-  </data>
-  <data name="DisambiguationWhichTripToDest" xml:space="preserve">
-    <value>Which trip to {0} did you want to cancel?</value>
-  </data>
-  <data name="FoundNoTripToDestination" xml:space="preserve">
-    <value>Sorry, you don't have any trips to {0}</value>
-  </data>
-  <data name="KeepingTripToDestination" xml:space="preserve">
-    <value>Okay, keeping the trip to {0}</value>
-  </data>
-  <data name="LaunchingAdventureWorks" xml:space="preserve">
-    <value>Launching Adventure Works</value>
-  </data>
-  <data name="LoadingTripToDestination" xml:space="preserve">
-    <value>Looking for trip to {0}</value>
-  </data>
-  <data name="NoSuchTripToDestination" xml:space="preserve">
-    <value>Sorry, you don't have any trips to {0}</value>
-  </data>
-  <data name="PluralUpcomingTrips" xml:space="preserve">
-    <value>Here are your upcoming trips.</value>
-  </data>
-  <data name="ProgressLookingForTripToDest" xml:space="preserve">
-    <value>Looking for a trip to {0}</value>
-  </data>
-  <data name="SingularUpcomingTrip" xml:space="preserve">
-    <value>Here's your upcoming trip.</value>
-  </data>
 </root>

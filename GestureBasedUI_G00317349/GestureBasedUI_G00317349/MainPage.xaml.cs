@@ -54,12 +54,12 @@ namespace GestureBasedUI_G00317349
 
         public void fastForwardPlayer()
         {
-
+            var session = this.mediaPlayerElement.MediaPlayer.PlaybackSession; session.Position = session.Position + TimeSpan.FromSeconds(10);
         }
 
         public void rewindPlayer()
         {
-
+            var session = this.mediaPlayerElement.MediaPlayer.PlaybackSession; session.Position = session.Position - TimeSpan.FromSeconds(10);
         }
 
         public void increaseVolume()
