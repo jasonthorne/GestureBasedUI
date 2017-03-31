@@ -114,7 +114,7 @@ namespace GestureBasedUI_G00317349
 
         private void pickVideoButton_Click(object sender, RoutedEventArgs e)
         {
-
+            mediaListBox.Items.Clear();
             addToMediaListBox("videos");
 
             /*
@@ -211,7 +211,7 @@ namespace GestureBasedUI_G00317349
 
         private void pickMusicButton_Click(object sender, RoutedEventArgs e)
         {
-
+            mediaListBox.Items.Clear();
             addToMediaListBox("music");
 
             /*
@@ -296,11 +296,13 @@ namespace GestureBasedUI_G00317349
 
             }
 
-            StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
+            StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByAlbumArtist); ////.GroupByMonth);
             IReadOnlyList<StorageFolder> tempFolderList = await queryResult.GetFoldersAsync();
 
             //clear fileList before populating
             fileList.Clear();
+
+            mySpiltView.IsPaneOpen = true;
 
             foreach (StorageFolder folder in tempFolderList)
             {
@@ -318,7 +320,7 @@ namespace GestureBasedUI_G00317349
                 }
             }
 
-            mySpiltView.IsPaneOpen = true;
+            
 
         }
 
@@ -338,9 +340,11 @@ namespace GestureBasedUI_G00317349
 
                 if ((string)mediaListBox.SelectedItem == Path.GetFileNameWithoutExtension(file.Name))
                 {
-                    mySpiltView.IsPaneOpen = false;
+                    
                     this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
                     this.mediaPlayerElement.MediaPlayer.Play();
+
+
                 }
             }
 

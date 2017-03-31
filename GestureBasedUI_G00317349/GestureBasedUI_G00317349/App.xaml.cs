@@ -135,7 +135,6 @@ namespace GestureBasedUI_G00317349
                
                 VoiceCommandDefinition commandDefinitions;
 
-              
                if (VoiceCommandDefinitionManager.InstalledCommandDefinitions.TryGetValue("ProjectCommandSet_en-us", out commandDefinitions))
                {
 
@@ -166,6 +165,7 @@ namespace GestureBasedUI_G00317349
                     }
                     ////////////////////////////////////
 
+                    //add video names to phraselist
                     await commandDefinitions.SetPhraseListAsync("video", videoNamesList);
                 }
             }
