@@ -1,5 +1,4 @@
-﻿//Code adapted from Microsoft docs: https://docs.microsoft.com/en-us/cortana/voicecommands/launch-a-background-app-with-voice-commands-in-cortana
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -130,7 +129,8 @@ namespace GestureBasedUI_G00317349
             try
             {
                 // Update the video phrase list, so that Cortana voice commands can use videos found in system.
-               
+                //Adapted from Miscrosoft docs: https://docs.microsoft.com/en-us/cortana/voicecommands/dynamically-modify-voice-command-definition-vcd-phrase-lists
+
                 VoiceCommandDefinition commandDefinitions;
                 StorageFolder videoFolder = null;
 
@@ -160,18 +160,11 @@ namespace GestureBasedUI_G00317349
                         foreach (StorageFile file in fileList)
                         {
                            
-                            //namesList.Add(Path.GetFileNameWithoutExtension(Regex.Replace(file.Name, @"[\d-]",string.Empty)));    //.TrimEnd()
                             namesList.Add(Path.GetFileNameWithoutExtension(file.Name));
                         }
                     }
 
-                    ////////////////////////////////////
-                    foreach (string word in namesList)
-                    {
-                        Debug.WriteLine(word);
-                    }
-                    ////////////////////////////////////
-
+                   
                     //add video names to phraselist
                     await commandDefinitions.SetPhraseListAsync(mediaType, namesList);
                 }
@@ -186,8 +179,6 @@ namespace GestureBasedUI_G00317349
         protected override void OnActivated(IActivatedEventArgs args) 
         {
 
-            
-            Debug.WriteLine("-------------- onActivated called -------");
             base.OnActivated(args);
 
             Frame rootFrame = Window.Current.Content as Frame;
@@ -219,17 +210,13 @@ namespace GestureBasedUI_G00317349
             // Was the app activated by a voice command?
             if (args.Kind == ActivationKind.VoiceCommand)
             {
-                Debug.WriteLine("-------------- Activated via a voice command -------");
 
                 var commandArgs = args as VoiceCommandActivatedEventArgs;
                 Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
 
                 // Get the name of the voice command and the text spoken. 
-                // See VoiceCommands.xml for supported voice commands.
                 string voiceCommandName = speechRecognitionResult.RulePath[0];
                 string textSpoken = speechRecognitionResult.Text;
-
-                Debug.WriteLine("-------------- Voice command name -------" + voiceCommandName);
 
 
                 switch (voiceCommandName)
@@ -277,7 +264,7 @@ namespace GestureBasedUI_G00317349
             }
             else if (args.Kind == ActivationKind.Protocol)
             {
-
+                
             }
 
         }

@@ -31,8 +31,7 @@ namespace GestureBasedUI_G00317349
     public sealed partial class MainPage : Page
     {
 
-        //private MainPage rootPage = MainPage.Current;
-
+        
         //holds video/music files
         List<StorageFile> fileList = new List<StorageFile>();
        
@@ -42,24 +41,7 @@ namespace GestureBasedUI_G00317349
             this.InitializeComponent();
         }
 
-        //for testing VCD file
-        public void createRectangle(Color color)
-        {
-            Random random = new Random();
-            var left = random.Next(0, 300);
-            var top = random.Next(0, 300);
-
-            var rect = new Windows.UI.Xaml.Shapes.Rectangle();
-            rect.Height = 100;
-            rect.Width = 100;
-            rect.Margin = new Thickness(left, top, 0, 0);
-
-            rect.Fill = new SolidColorBrush(color);
-
-            layoutGrid.Children.Add(rect);
-        }
-
-
+        
         public void pausePlayer()
         {
             this.mediaPlayerElement.MediaPlayer.Pause();
@@ -107,14 +89,6 @@ namespace GestureBasedUI_G00317349
             mediaPlayerElement.MediaPlayer.Source = null;
         }
 
-
-        
-
-        /*
-          protected override void OnNavigatedFrom(NavigationEventArgs e)
-          {
-              MediaPlayerHelper.CleanUpMediaPlayerSource(mediaPlayerElement.MediaPlayer);
-          }*/
 
 
         private void pickVideoButton_Click(object sender, RoutedEventArgs e)
@@ -169,33 +143,10 @@ namespace GestureBasedUI_G00317349
             }
             else if (mediaType == "music")
             {
-                chosenFolder = KnownFolders.MusicLibrary; ////Slow!! 
-
-
-                /*     
-                 QueryOptions queryOption = new QueryOptions
-                 (CommonFileQuery.OrderByTitle, new string[] { ".mp3", ".mp4", ".wma" });
-
-                 queryOption.FolderDepth = FolderDepth.Deep;
-
-                 Queue<IStorageFolder> folders = new Queue<IStorageFolder>();
-
-                 var files = await KnownFolders.MusicLibrary.CreateFileQueryWithOptions
-                   (queryOption).GetFilesAsync();
-
-                 foreach (var file in files)
-                 {
-                     Debug.WriteLine(file.Name);
-                     mediaListBox.Items.Add(file.Name);
-                 }
-
-
-                     chosenFolder = KnownFolders.MusicLibrary;
-                     //musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);*/
-
+                chosenFolder = KnownFolders.MusicLibrary; 
             }
 
-            StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByAlbumArtist); //.GroupByAlbumArtist); ////.GroupByMonth);
+            StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByAlbumArtist); 
             IReadOnlyList<StorageFolder> tempFolderList = await queryResult.GetFoldersAsync();
 
             //clear fileList before populating
@@ -218,8 +169,7 @@ namespace GestureBasedUI_G00317349
                     fileList.Add(file);
                 }
             }
-
-            
+   
 
         }
 

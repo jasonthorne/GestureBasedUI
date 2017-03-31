@@ -4,42 +4,17 @@
     <CommandPrefix>Project</CommandPrefix> 
     <Example>Launch</Example>
     
-    <Command Name="addRectangle">
-      <Example> add a test  </Example>
-      <ListenFor> add [a] test </ListenFor>
-      <Feedback> Adding a test </Feedback>
-      <Navigate/>
-    </Command>
-
-    <Command Name="addRectangleFromBackground">
-      <Example> add a rectangle </Example>
-      <ListenFor> add [a] rectangle </ListenFor>
-      <Feedback> Adding a rectangle</Feedback>
-      <VoiceCommandService Target="VoiceCommandService"/>
-    </Command>
-    
-    
-    <!--<Command Name="test">
-      <Example> play a video  </Example>
-     <ListenFor> play a {video} </ListenFor>
-      <ListenFor> play a video </ListenFor>
-      <Feedback> Playing the video </Feedback>
-      <VoiceCommandService Target="VoiceCommandService"/>
-    </Command>-->
-    
-    
+ 
      <Command Name="playVideo">
       <Example>play a video</Example>
       <ListenFor>play video {video}</ListenFor>
-      <!--<ListenFor> play a video </ListenFor>-->
       <Feedback>Playing the video</Feedback>
       <Navigate/>
-    <!-- <VoiceCommandService Target="VoiceCommandService"/> -->
     </Command>
     
     <Command Name="playMusic">
       <Example>play some music</Example>
-      <ListenFor>play music {music}</ListenFor>
+      <ListenFor>play {music}</ListenFor>
       <Feedback>Playing music</Feedback>
       <Navigate/>
     </Command>
@@ -109,20 +84,13 @@
       <Navigate/>
     </Command>   
     
-   
     <PhraseList Label="video" />
     
     <PhraseList Label="music" />
     
-    
-    <!--</PhraseList>-->
-
+   
   </CommandSet>
 
 
 </VoiceCommands>
 
-
-<!-- 
-https://docs.microsoft.com/en-us/cortana/voicecommands/launch-a-background-app-with-voice-commands-in-cortana 
--->

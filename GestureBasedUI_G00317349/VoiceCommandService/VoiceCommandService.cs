@@ -1,4 +1,4 @@
-﻿//Code adapted from Microsoft docs: https://docs.microsoft.com/en-us/cortana/voicecommands/launch-a-background-app-with-voice-commands-in-cortana
+﻿
 
 using System;
 using System.Collections.Generic;
@@ -13,6 +13,9 @@ using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Resources.Core;
 using Windows.ApplicationModel.VoiceCommands;
 using Windows.Storage;
+
+
+//Code adapted from Microsoft docs: https://docs.microsoft.com/en-us/cortana/voicecommands/launch-a-background-app-with-voice-commands-in-cortana
 
 namespace VoiceCommandService.VoiceCommands
 {
@@ -42,27 +45,13 @@ namespace VoiceCommandService.VoiceCommands
 
                     switch (voiceCommand.CommandName)
                     {
-                        //case "addRectangleFromBackground":
-                       // {
-                                //var destination = voiceCommand.Properties["destination"][0];
-                                //SendCompletionMessageForDestination("");
-                             //   LaunchAppInForeground();
-                              //  break;
-                      //  }
-                          
+                       
                         case "test":
                         {
                                 LaunchAppInForeground();
-                                
-   
                                 break;
                         }
-
-
-                        // As a last resort, launch the app in the foreground.
-                        //default:
-                           // LaunchAppInForeground();
-                           // break;
+                    
                     }
                 }
                 finally
