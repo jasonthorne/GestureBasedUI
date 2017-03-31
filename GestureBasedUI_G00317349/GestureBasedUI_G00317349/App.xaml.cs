@@ -214,10 +214,8 @@ namespace GestureBasedUI_G00317349
                 var commandArgs = args as VoiceCommandActivatedEventArgs;
                 Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
 
-                // Get the name of the voice command and the text spoken. 
                 string voiceCommandName = speechRecognitionResult.RulePath[0];
                 string textSpoken = speechRecognitionResult.Text;
-
 
                 switch (voiceCommandName)
                 {

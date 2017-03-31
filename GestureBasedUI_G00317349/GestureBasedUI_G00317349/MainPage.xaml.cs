@@ -117,7 +117,6 @@ namespace GestureBasedUI_G00317349
                 chosenFolder = KnownFolders.MusicLibrary;
             }
 
-           // StorageFolder videoFolder = KnownFolders.VideosLibrary;
 
             StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
 
