@@ -89,7 +89,7 @@
     </Command>   
     
     <Command Name="makeFullScreen">
-      <Example>Close content</Example>
+      <Example>make full screen</Example>
       <ListenFor>[make] full screen</ListenFor>
       <Feedback>Making full screen</Feedback>
       <Navigate/>

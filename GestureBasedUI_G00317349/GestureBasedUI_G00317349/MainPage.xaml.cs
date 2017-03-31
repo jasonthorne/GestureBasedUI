@@ -92,7 +92,9 @@ namespace GestureBasedUI_G00317349
 
         public void makeFullScreen()
         {
-            //this.mediaPlayerElement.MediaPlayer.f
+            //this.mediaPlayerElement.TransportControls.IsFullWindowEnabled = true;
+            //this.mediaPlayerElement.IsFullWindow = true;
+            //this.mediaPlayerElement.IsFullWindow
         }
 
         public void exitFullScreen()
@@ -102,8 +104,11 @@ namespace GestureBasedUI_G00317349
 
         public void stopPlayer()
         {
-
+            mediaPlayerElement.MediaPlayer.Source = null;
         }
+
+
+        
 
         /*
           protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -115,7 +120,7 @@ namespace GestureBasedUI_G00317349
         private void pickVideoButton_Click(object sender, RoutedEventArgs e)
         {
             mediaListBox.Items.Clear();
-            addToMediaListBox("videos");
+            polulateListBox("videos");
 
             /*
             // Clear previous returned file name, if it exists, between iterations of this scenario
@@ -180,7 +185,7 @@ namespace GestureBasedUI_G00317349
         }
 
 
-        public async void playVideo(string videoName) /////////////?????????????
+        public async void playMedia(string videoName) /////////////?????????????
         {
 
             mediaPlayerElement.Source = null;
@@ -212,54 +217,10 @@ namespace GestureBasedUI_G00317349
         private void pickMusicButton_Click(object sender, RoutedEventArgs e)
         {
             mediaListBox.Items.Clear();
-            addToMediaListBox("music");
-
-            /*
-            mediaPlayerElement.Source = null;
-
-            // Create and open the file picker
-            FileOpenPicker sopenPicker = new FileOpenPicker();
-            sopenPicker.ViewMode = PickerViewMode.Thumbnail;
-            //sopenPicker.SuggestedStartLocation = PickerLocationId.MusicLibrary;
-            sopenPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.MusicLibrary;
-            sopenPicker.FileTypeFilter.Add(".mp3");
-
-            StorageFile file = await sopenPicker.PickSingleFileAsync();
-            if (file != null)
-            {
-              
-                this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
-                this.mediaPlayerElement.MediaPlayer.Play();
-            }
-            else
-            {
-                //rootPage.NotifyUser("Operation cancelled.", NotifyType.ErrorMessage);
-            }
-
-            //mediaPlayerElement.IsTabStop();
-            //mediaPlayerElement.Source = null;
-           */
-
-            /*
-             QueryOptions queryOption = new QueryOptions
-             (CommonFileQuery.OrderByTitle, new string[] { ".mp3", ".mp4", ".wma" });
-
-             queryOption.FolderDepth = FolderDepth.Deep;
-
-             Queue<IStorageFolder> folders = new Queue<IStorageFolder>();
-
-             var files = await KnownFolders.MusicLibrary.CreateFileQueryWithOptions
-               (queryOption).GetFilesAsync();
-
-             foreach (var file in files)
-             {
-                 Debug.WriteLine(file.Name);
-                 mediaListBox.Items.Add(file.Name);
-             }
-             */
+            polulateListBox("music");
         }
 
-        public async void addToMediaListBox(string mediaType)
+        public async void polulateListBox(string mediaType)
         {
 
             StorageFolder chosenFolder = null;
@@ -270,7 +231,7 @@ namespace GestureBasedUI_G00317349
             }
             else if (mediaType == "music")
             {
-                chosenFolder = KnownFolders.MusicLibrary; /////////////////////NOT WORKING!!!!
+                chosenFolder = KnownFolders.MusicLibrary; ////Slow!! 
 
 
                 /*     
@@ -296,14 +257,15 @@ namespace GestureBasedUI_G00317349
 
             }
 
-            StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByAlbumArtist); ////.GroupByMonth);
+            StorageFolderQueryResult queryResult = chosenFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByAlbumArtist); //.GroupByAlbumArtist); ////.GroupByMonth);
             IReadOnlyList<StorageFolder> tempFolderList = await queryResult.GetFoldersAsync();
 
             //clear fileList before populating
             fileList.Clear();
 
             mySpiltView.IsPaneOpen = true;
-
+           
+           
             foreach (StorageFolder folder in tempFolderList)
             {
 
@@ -341,6 +303,7 @@ namespace GestureBasedUI_G00317349
                 {             
                    this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
                    this.mediaPlayerElement.MediaPlayer.Play();
+                   mySpiltView.IsPaneOpen = false;
                 }
             }
 

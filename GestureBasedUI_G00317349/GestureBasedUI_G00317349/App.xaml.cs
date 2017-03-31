@@ -166,7 +166,8 @@ namespace GestureBasedUI_G00317349
                         foreach (StorageFile file in fileList)
                         {
                            
-                            namesList.Add(Path.GetFileNameWithoutExtension(Regex.Replace(file.Name, @"[\d-]", string.Empty)));    
+                            //namesList.Add(Path.GetFileNameWithoutExtension(Regex.Replace(file.Name, @"[\d-]",string.Empty)));    //.TrimEnd()
+                            namesList.Add(Path.GetFileNameWithoutExtension(file.Name));    //.TrimEnd()
                         }
                     }
 
@@ -256,11 +257,11 @@ namespace GestureBasedUI_G00317349
                 {
                     case "playVideo":
                         string spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
-                        page.playVideo(spokenVideo);
+                        page.playMedia(spokenVideo);
                         break;
                     case "playMusic":
                         string spokenMusic = speechRecognitionResult.SemanticInterpretation.Properties["music"][0];
-                        page.playMusic(spokenMusic);
+                        page.playMedia(spokenMusic);
                         break;
                     case "pausePlayer":
                         page.pausePlayer();
@@ -288,8 +289,6 @@ namespace GestureBasedUI_G00317349
                         break;
                     case "stopPlayer":
                         page.stopPlayer();
-                        break;
-                    default:
                         break;
                 }
 
