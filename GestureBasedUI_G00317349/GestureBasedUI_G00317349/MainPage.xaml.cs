@@ -122,70 +122,10 @@ namespace GestureBasedUI_G00317349
             mediaListBox.Items.Clear();
             polulateListBox("videos");
 
-            /*
-            // Clear previous returned file name, if it exists, between iterations of this scenario
-            rootPage.NotifyUser("", NotifyType.StatusMessage);
-            */
-
-            /*
-            //////
-            StorageFolder VideoFolder = KnownFolders.VideosLibrary;
-
-            StorageFolderQueryResult queryResult =
-                VideoFolder.CreateFolderQuery(CommonFolderQuery.GroupByMonth);
-
-            IReadOnlyList<StorageFolder> folderList =
-                await queryResult.GetFoldersAsync();
-
-            StringBuilder outputText = new StringBuilder();
-
-            foreach (StorageFolder folder in folderList)
-            {
-                IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
-
-                // Print the month and number of files in this group.
-                outputText.AppendLine(folder.Name + " (" + fileList.Count + ")");
-
-                foreach (StorageFile x in fileList)
-                {
-                    // Print the name of the file.
-                    outputText.AppendLine("   " + x.Name);
-                }
-            }
-
-            /////*/
-
-            /*
-            // Create and open the file picker
-            FileOpenPicker openPicker = new FileOpenPicker();
-            openPicker.ViewMode = PickerViewMode.Thumbnail;
-            openPicker.SuggestedStartLocation = PickerLocationId.VideosLibrary;
-            openPicker.FileTypeFilter.Add(".mp4");
-            openPicker.FileTypeFilter.Add(".mkv");
-            openPicker.FileTypeFilter.Add(".avi");
-            openPicker.FileTypeFilter.Add(".mp3"); ///////////////////////////////////REMOVE LATER!!! 
-
-            StorageFile file = await openPicker.PickSingleFileAsync();
-            if (file != null)
-            {
-                //rootPage.NotifyUser("Picked video: " + file.Name, NotifyType.StatusMessage);
-                this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
-                this.mediaPlayerElement.MediaPlayer.Play();
-
-            }
-            else
-            {
-                //rootPage.NotifyUser("Operation cancelled.", NotifyType.ErrorMessage);
-            }
-
-            //mediaPlayerElement.IsTabStop();
-            //mediaPlayerElement.Source = null;
-            */
-
         }
 
 
-        public async void playMedia(string videoName) /////////////?????????????
+        public async void playMedia(string videoName) 
         {
 
             mediaPlayerElement.Source = null;
@@ -195,8 +135,6 @@ namespace GestureBasedUI_G00317349
             StorageFolderQueryResult queryResult = videoFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
 
             IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
-
-            ///StringBuilder outputText = new StringBuilder();
 
             foreach (StorageFolder folder in folderList)
             {

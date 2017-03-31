@@ -125,9 +125,7 @@ namespace GestureBasedUI_G00317349
             deferral.Complete();
         }
 
-
-       //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        public async Task updatePhraseLists(string mediaType)  //SetPhraseListAsync
+        public async Task updatePhraseLists(string mediaType)  
         {
             try
             {
@@ -149,13 +147,9 @@ namespace GestureBasedUI_G00317349
                 if (VoiceCommandDefinitionManager.InstalledCommandDefinitions.TryGetValue("ProjectCommandSet_en-us", out commandDefinitions))
                 {
 
-                    //StorageFolder videoFolder = KnownFolders.VideosLibrary;
-
                     StorageFolderQueryResult queryResult = videoFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
 
                     IReadOnlyList<StorageFolder> folderList = await queryResult.GetFoldersAsync();
-
-                    ////StringBuilder outputText = new StringBuilder();
 
                     List<string> namesList = new List<string>();
 
@@ -167,7 +161,7 @@ namespace GestureBasedUI_G00317349
                         {
                            
                             //namesList.Add(Path.GetFileNameWithoutExtension(Regex.Replace(file.Name, @"[\d-]",string.Empty)));    //.TrimEnd()
-                            namesList.Add(Path.GetFileNameWithoutExtension(file.Name));    //.TrimEnd()
+                            namesList.Add(Path.GetFileNameWithoutExtension(file.Name));
                         }
                     }
 
@@ -180,7 +174,6 @@ namespace GestureBasedUI_G00317349
 
                     //add video names to phraselist
                     await commandDefinitions.SetPhraseListAsync(mediaType, namesList);
-                    //await commandDefinitions.SetPhraseListAsync("video", namesList);
                 }
             }
             catch (Exception ex)
@@ -188,12 +181,9 @@ namespace GestureBasedUI_G00317349
                 System.Diagnostics.Debug.WriteLine("Error updating Phrase list for VCDs: " + ex.ToString());
             }
         }
-        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
+     
 
         protected override void OnActivated(IActivatedEventArgs args) 
-        //protected override async void OnActivated(IActivatedEventArgs args)
         {
 
             
@@ -225,18 +215,7 @@ namespace GestureBasedUI_G00317349
 
             MainPage page = rootFrame.Content as MainPage;
 
-            /*
-            var commandArgs = args as VoiceCommandActivatedEventArgs;
-            Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
-
-            // Get the name of the voice command and the text spoken. 
-            // See VoiceCommands.xml for supported voice commands.
-            string voiceCommandName = speechRecognitionResult.RulePath[0];
-            string textSpoken = speechRecognitionResult.Text;
-            */
-
-
-            ////////+++++++++++++++++++++++++++++++++++++++++++++++++
+ 
             // Was the app activated by a voice command?
             if (args.Kind == ActivationKind.VoiceCommand)
             {
@@ -258,10 +237,12 @@ namespace GestureBasedUI_G00317349
                     case "playVideo":
                         string spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
                         page.playMedia(spokenVideo);
+                        //page.polulateListBox("video");
                         break;
                     case "playMusic":
                         string spokenMusic = speechRecognitionResult.SemanticInterpretation.Properties["music"][0];
                         page.playMedia(spokenMusic);
+                        //page.polulateListBox("music");
                         break;
                     case "pausePlayer":
                         page.pausePlayer();
@@ -293,79 +274,10 @@ namespace GestureBasedUI_G00317349
                 }
 
 
-                ///////////////////////////////////////////////
-                if (voiceCommandName == "addRectangle")
-                {
-                    page.createRectangle(Colors.Red);
-                }
-               //////////////////////////////////////////////
             }
             else if (args.Kind == ActivationKind.Protocol)
             {
 
-                /*
-                 var commandArgs = args as Windows.ApplicationModel.Activation.VoiceCommandActivatedEventArgs;  //VoiceCommandActivatedEventArgs;
-                 Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
-                 //var speechRecognitionResult = commandArgs.Result;
-
-
-                 // Get the name of the voice command and the text spoken. 
-                 // See VoiceCommands.xml for supported voice commands.
-                 string voiceCommandName = speechRecognitionResult.RulePath[0];
-                 string textSpoken = speechRecognitionResult.Text;
-              */
-                /*
-                   page.createRectangle(Colors.CornflowerBlue);
-                   //////////////////
-                   if (voiceCommandName == "playVideo")
-                   {
-
-
-                       string spokenVideo = "";
-
-                       try
-                       {
-                           spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
-                       }
-                       catch
-                       {
-                           //
-                       }
-
-                       page.cortanaPickVideo(spokenVideo);
-                   }
-                   ///////////////////
-                   */
-
-
-
-
-
-                //  page.cortanaPickVideo("apple");
-                /*
-                //////////////+++++++++++++++++++++++++
-                var commandArgs = args as Windows.ApplicationModel.Activation.VoiceCommandActivatedEventArgs;
-
-               var speechRecognitionResult = commandArgs.Result;
-               string voiceCommandName = speechRecognitionResult.RulePath[0];
-               string textSpoken = speechRecognitionResult.Text;
-
-               string spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
-
-                page.cortanaPickVideo(spokenVideo);
-               */
-
-
-
-
-
-                //++++++++++++++++++++++++
-
-
-                //if (voiceCommandName == "addRectangleFromBackground")
-                // {
-                // page.CreateRectangle(Colors.Yellow);
-                //}
             }
 
         }

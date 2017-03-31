@@ -14,7 +14,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <MediaPlayerElement x:Name="mediaPlayerElement" AutoPlay="False"   AreTransportControlsEnabled="True" Grid.RowSpan="2"/>
+        <MediaPlayerElement x:Name="mediaPlayerElement" AutoPlay="False" AreTransportControlsEnabled="True" Grid.RowSpan="2"/>
         
         <!-- adapted from: http://blog.jerrynixon.com/2015/04/implementing-hamburger-button-with.html -->
         <RelativePanel>
