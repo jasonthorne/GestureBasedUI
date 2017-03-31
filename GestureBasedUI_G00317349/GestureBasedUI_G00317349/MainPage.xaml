@@ -7,16 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    
-
-    <!--<Grid Name="LayoutGrid">-->
+   
     <Grid x:Name="layoutGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-       
 
         <MediaPlayerElement x:Name="mediaPlayerElement" AutoPlay="False"  AreTransportControlsEnabled="True" Grid.RowSpan="2"/>
        
@@ -31,16 +27,7 @@
                 </ListBox>
             </SplitView.Pane>
         </SplitView>
-
-        <!--<ScrollViewer VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto" Margin="10,0,-10,0">-->
-        <!--<StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock TextWrapping="Wrap"  HorizontalAlignment="Left"></TextBlock>
-                <Button  x:Name="pickVideoButton" Content="Pick video" Margin="0,0,0,10" Click="playVideoButton_Click" />
-            </StackPanel>
-            
-        </StackPanel>-->
-        <!--</ScrollViewer> -->
+        
         <!--E714 E8D6 EC4F E116-->
 
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -37,7 +38,6 @@ namespace GestureBasedUI_G00317349
         public App()
         {
             this.InitializeComponent();
-            Debug.WriteLine("Hello!");
             this.Suspending += OnSuspending;
         }
 
@@ -95,9 +95,9 @@ namespace GestureBasedUI_G00317349
             var storageFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///VoiceCommandDefinitions.xml"));
             await Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(storageFile);
 
-            //Update phraselist to include users videos
-            await updateVideoPhraseList();
-
+            //Update phraselist to include users videos & music
+            await updatePhraseLists("video");
+            await updatePhraseLists("music");
 
         }
 
@@ -127,18 +127,29 @@ namespace GestureBasedUI_G00317349
 
 
        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        public async Task updateVideoPhraseList()  //SetPhraseListAsync
+        public async Task updatePhraseLists(string mediaType)  //SetPhraseListAsync
         {
             try
             {
                 // Update the video phrase list, so that Cortana voice commands can use videos found in system.
                
                 VoiceCommandDefinition commandDefinitions;
+                StorageFolder videoFolder = null;
 
-               if (VoiceCommandDefinitionManager.InstalledCommandDefinitions.TryGetValue("ProjectCommandSet_en-us", out commandDefinitions))
-               {
+                switch (mediaType)
+                {
+                    case "video":
+                        videoFolder = KnownFolders.VideosLibrary;
+                        break;
+                    case "music":
+                        videoFolder = KnownFolders.MusicLibrary;
+                        break;
+                }
 
-                    StorageFolder videoFolder = KnownFolders.VideosLibrary;
+                if (VoiceCommandDefinitionManager.InstalledCommandDefinitions.TryGetValue("ProjectCommandSet_en-us", out commandDefinitions))
+                {
+
+                    //StorageFolder videoFolder = KnownFolders.VideosLibrary;
 
                     StorageFolderQueryResult queryResult = videoFolder.CreateFolderQuery(Windows.Storage.Search.CommonFolderQuery.GroupByMonth);
 
@@ -146,7 +157,7 @@ namespace GestureBasedUI_G00317349
 
                     ////StringBuilder outputText = new StringBuilder();
 
-                    List<string> videoNamesList = new List<string>();
+                    List<string> namesList = new List<string>();
 
                     foreach (StorageFolder folder in folderList)
                     {
@@ -154,19 +165,21 @@ namespace GestureBasedUI_G00317349
 
                         foreach (StorageFile file in fileList)
                         {
-                            videoNamesList.Add(Path.GetFileNameWithoutExtension(file.Name));    
+                           
+                            namesList.Add(Path.GetFileNameWithoutExtension(Regex.Replace(file.Name, @"[\d-]", string.Empty)));    
                         }
                     }
 
                     ////////////////////////////////////
-                    foreach (string word in videoNamesList)
+                    foreach (string word in namesList)
                     {
                         Debug.WriteLine(word);
                     }
                     ////////////////////////////////////
 
                     //add video names to phraselist
-                    await commandDefinitions.SetPhraseListAsync("video", videoNamesList);
+                    await commandDefinitions.SetPhraseListAsync(mediaType, namesList);
+                    //await commandDefinitions.SetPhraseListAsync("video", namesList);
                 }
             }
             catch (Exception ex)
@@ -244,6 +257,10 @@ namespace GestureBasedUI_G00317349
                     case "playVideo":
                         string spokenVideo = speechRecognitionResult.SemanticInterpretation.Properties["video"][0];
                         page.playVideo(spokenVideo);
+                        break;
+                    case "playMusic":
+                        string spokenMusic = speechRecognitionResult.SemanticInterpretation.Properties["music"][0];
+                        page.playMusic(spokenMusic);
                         break;
                     case "pausePlayer":
                         page.pausePlayer();

@@ -312,7 +312,6 @@ namespace GestureBasedUI_G00317349
                
                 foreach (StorageFile file in tempFileList)
                 {
-
                     //add to mediaListBox for displaying to user
                     mediaListBox.Items.Add(Path.GetFileNameWithoutExtension(file.Name));
                     //add to fileList for playing after selection
@@ -339,12 +338,9 @@ namespace GestureBasedUI_G00317349
                 Debug.WriteLine(file.Name); 
 
                 if ((string)mediaListBox.SelectedItem == Path.GetFileNameWithoutExtension(file.Name))
-                {
-                    
-                    this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
-                    this.mediaPlayerElement.MediaPlayer.Play();
-
-
+                {             
+                   this.mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
+                   this.mediaPlayerElement.MediaPlayer.Play();
                 }
             }
 

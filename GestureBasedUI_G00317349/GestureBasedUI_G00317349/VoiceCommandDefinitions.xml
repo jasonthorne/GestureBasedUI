@@ -36,6 +36,13 @@
       <Navigate/>
     <!-- <VoiceCommandService Target="VoiceCommandService"/> -->
     </Command>
+    
+    <Command Name="playMusic">
+      <Example>play some music</Example>
+      <ListenFor>play music {music}</ListenFor>
+      <Feedback>Playing music</Feedback>
+      <Navigate/>
+    </Command>
 
     <Command Name="pausePlayer">
       <Example>Pause player</Example>
@@ -104,7 +111,10 @@
     
    
     <PhraseList Label="video" />
-   
+    
+    <PhraseList Label="music" />
+    
+    
     <!--</PhraseList>-->
 
   </CommandSet>
