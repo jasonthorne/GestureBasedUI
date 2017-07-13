@@ -1,6 +1,7 @@
 # Gesture Based UI Development
-## Voice activated Media Player
+
 ### Jason Thorne. G00317349.
+
 
 The purpose of this application is to provide a media player to Windows users, which can be controlled through the use of voice commands. This is done by extending the use of Cortana with voice commands that launch and execute actions within the application. It is also designed to also be used through a traditional interface of provided buttons, allowing the user to chose they’re preferable method of operation. 
 
