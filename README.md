@@ -2,7 +2,7 @@
 
 ### Jason Thorne. G00317349.
 
-The purpose of this application is to provide a media player to Windows users, which can be controlled through the use of voice commands. This is done by extending the use of Cortana with voice commands that launch and execute actions within the application. It is also designed to also be used through a traditional interface of provided buttons, allowing the user to chose their preferable method of operation. 
+The purpose of this application is to provide a media player to Windows users, which can be controlled through the use of voice commands. This is done by extending the use of Cortana with voice commands that launch and execute actions within the application. It is also designed to be used through a traditional interface of provided buttons, allowing the user to chose their preferable method of operation. 
 
 This uses the _MediaPlayerElement_ to play content. To best accommodate the viewing of videos, this takes up the most space in the app. Its controls can be found at the bottom of the page, providing the user with the buttons necessary to play content.  
 
