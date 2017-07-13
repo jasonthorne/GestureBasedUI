@@ -2,9 +2,9 @@
 
 ### Jason Thorne. G00317349.
 
-The purpose of this application is to provide a media player to Windows users, which can be controlled through the use of voice commands. This is done by extending the use of Cortana with voice commands that launch and execute actions within the application. It is also designed to also be used through a traditional interface of provided buttons, allowing the user to chose they’re preferable method of operation. 
+The purpose of this application is to provide a media player to Windows users, which can be controlled through the use of voice commands. This is done by extending the use of Cortana with voice commands that launch and execute actions within the application. It is also designed to also be used through a traditional interface of provided buttons, allowing the user to chose their preferable method of operation. 
 
-This uses the MediaPlayerElement to play content. To best accommodate the viewing of videos, this takes up the most space in the app. Its controls can be seen at the bottom of the page, providing the user with the buttons necessary to play content.  
+This uses the _MediaPlayerElement_ to play content. To best accommodate the viewing of videos, this takes up the most space in the app. Its controls can be found at the bottom of the page, providing the user with the buttons necessary to play content.  
 
 The gestures used in this application are incorporated through Cortana, though the use of Voice Command Definitions. These give the user the ability to operate the media player through a set of defined vocal instructions. Enabling the same functionality as can be done through traditional buttons.   These are installed upon launch of the app. This allows for the updating of the phrase lists within the Voice Command Definitions file. As the application is initially unaware of the file names of the user’s videos and music, these are dynamically added to the phrase list through first reading them from the user’s system, then altering the phrase lists accordingly. This then allows for the user to speak the name of their song/video through a launch command, which can then be correctly interpreted and launched. 
 
