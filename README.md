@@ -10,14 +10,14 @@ The gestures used in this application are incorporated through Cortana, though t
 
 For testing the gestures of this app, please ensure that you have music files in your music system folder and videos in the video folder. The following is the list of voice commands that can be used within the application:  
 
-* Play a video: “play video {video name} in project” 
-* Play some music: “play music {song name} in project” 
-* Pause player: “pause [the] [video] [music] in project” 
-* Resume content: “resume [the] [video] [music] in project” 
-* Fast forward content: “fast forward the [video] [music] in project” 
-* Rewind content: “rewind the [video] [music] in project” 
-* Increase volume: “increase [the] volume” OR “turn up [the] volume in project” 
-* Reduce volume: “reduce [the] volume” OR “turn down [the] volume in project” 
-* Make full screen: “make full screen in project” 
-* Exit full screen: “ exit full screen OR minimize full screen in project” 
-* Stop content: “stop the [video] [music] in project” 
+* **Play a video:** “play video {video name} in project” 
+* **Play some music:** “play music {song name} in project” 
+* **Pause player:** “pause [the] [video] [music] in project” 
+* **Resume content:** “resume [the] [video] [music] in project” 
+* **Fast forward content:** “fast forward the [video] [music] in project” 
+* **Rewind content:** “rewind the [video] [music] in project” 
+* **Increase volume:** “increase [the] volume” OR “turn up [the] volume in project” 
+* **Reduce volume:** “reduce [the] volume” OR “turn down [the] volume in project” 
+* **Make full screen:** “make full screen in project” 
+* **Exit full screen:** “ exit full screen OR minimize full screen in project” 
+* **Stop content:** “stop the [video] [music] in project” 
